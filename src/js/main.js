@@ -37,8 +37,13 @@ for (let i = 0; i < skills.length; i++) {
 }
 
 themeToggle.onchange = () => {
-    document.documentElement.classList.toggle('dark-theme')
-    document.querySelector("meta[name=theme-color]").setAttribute("content", "#333");
+    if (document.querySelector('#themeToggle:checked') == null) {
+        document.documentElement.classList.toggle('dark-theme')
+        document.querySelector("meta[name=theme-color]").setAttribute("content", "#333");
+    } else {
+        document.documentElement.classList.remove('dark-theme')
+        document.querySelector("meta[name=theme-color]").setAttribute("content", "#fff");
+    }
 }
 
 function openTab(evt, tabId) {
