@@ -15,26 +15,24 @@ $xl: 1440px;
     violet 84% 98%
   );
   --shadow-color: rgba(0, 0, 0, 0.2);
-  --blur-depth: 15px;
-  --blur-depth: 50px;
+  --shadow-depth: 50px;
+  --blur-depth: 10px;
 }
 
 html {
-  --global-text-color: #444;
+  --primary: skyblue;
+  --secondary: #fff;
+  --bg: rgba(255, 255, 255, 0.3);
+  --global-text-color: #333;
   --card-text-color: #fff;
-  --chart-bg: #fff;
-  --chart-accent-color: skyblue;
-  --container-bg: rgba(255, 255, 255, 0.3);
   --border-color: rgba(255, 255, 255, 0.3);
-  --context-bg: #fff;
 }
 
 html[class="dark-theme"] {
+  --primary: skyblue;
+  --secondary: #333;
+  --bg: rgba(0, 0, 0, 0.3);
   --global-text-color: #f1f1f1;
   --card-text-color: #000;
-  --chart-bg: #333;
-  --chart-accent-color: skyblue;
-  --container-bg: rgba(0, 0, 0, 0.3);
   --border-color: rgba(0, 0, 0, 0.3);
-  --context-bg: #333;
 }

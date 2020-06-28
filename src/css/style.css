@@ -16,28 +16,26 @@
     violet 84% 98%
   );
   --shadow-color: rgba(0, 0, 0, 0.2);
-  --blur-depth: 15px;
-  --blur-depth: 50px;
+  --shadow-depth: 50px;
+  --blur-depth: 10px;
 }
 
 html {
-  --global-text-color: #444;
+  --primary: skyblue;
+  --secondary: #fff;
+  --bg: rgba(255, 255, 255, 0.3);
+  --global-text-color: #333;
   --card-text-color: #fff;
-  --chart-bg: #fff;
-  --chart-accent-color: skyblue;
-  --container-bg: rgba(255, 255, 255, 0.3);
   --border-color: rgba(255, 255, 255, 0.3);
-  --context-bg: #fff;
 }
 
 html[class="dark-theme"] {
+  --primary: skyblue;
+  --secondary: #333;
+  --bg: rgba(0, 0, 0, 0.3);
   --global-text-color: #f1f1f1;
   --card-text-color: #000;
-  --chart-bg: #333;
-  --chart-accent-color: skyblue;
-  --container-bg: rgba(0, 0, 0, 0.3);
   --border-color: rgba(0, 0, 0, 0.3);
-  --context-bg: #333;
 }
 
 * {
@@ -47,6 +45,7 @@ html[class="dark-theme"] {
           box-sizing: border-box;
   -webkit-transition: background 0.2s ease;
   transition: background 0.2s ease;
+  outline: none;
 }
 
 body,
@@ -64,11 +63,9 @@ body {
 }
 
 .container {
-  background: var(--container-bg);
+  background: var(--bg);
   -webkit-backdrop-filter: blur(var(--blur-depth));
           backdrop-filter: blur(var(--blur-depth));
-  -webkit-box-shadow: 0 0 var(--shadow-depth) var(--shadow-color);
-          box-shadow: 0 0 var(--shadow-depth) var(--shadow-color);
 }
 
 .analytics {
@@ -83,7 +80,7 @@ body {
 }
 
 [class^="card"] .chart {
-  color: var(--chart-accent-color);
+  color: var(--primary);
   position: relative;
   border-radius: 50%;
 }
@@ -98,7 +95,7 @@ body {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background: var(--chart-bg);
+  background: var(--secondary);
 }
 
 .card {
@@ -147,7 +144,7 @@ body {
 }
 
 .context {
-  background: var(--context-bg);
+  background: var(--secondary);
 }
 
 .content {
@@ -155,7 +152,7 @@ body {
   line-height: 1.4rem;
 }
 
-.tab {
+.navbar {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -170,31 +167,34 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
-  background: var(--container-bg);
+  background: var(--bg);
   -webkit-backdrop-filter: blur(var(--blur-depth));
           backdrop-filter: blur(var(--blur-depth));
+  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
 }
 
-.tab-controls {
+.navbar .tab-controls {
   height: 100%;
 }
 
-.tab-link {
-  padding: 12px 20px;
+.navbar .tab-link {
+  padding: 14px 28px;
   border: none;
   height: 100%;
   background: none;
+  cursor: pointer;
 }
 
-.tab-link.active {
+.navbar .tab-link:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.navbar .tab-link.active {
   background: rgba(0, 0, 0, 0.3);
 }
 
 .theme-control {
   margin: 0 10px;
-  top: 20px;
-  right: 20px;
 }
 
 .theme-toggle {
@@ -208,24 +208,37 @@ body {
 .theme-switch {
   display: block;
   position: relative;
-  height: 20px;
+  padding: 5px;
+  height: 25px;
   width: 40px;
+  border: solid 1px var(--border-color);
   border-radius: 25px;
-  background: var(--chart-bg);
+  background: rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .theme-switch .switch {
   display: block;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   height: 20px;
   width: 20px;
   border-radius: 50%;
-  background: var(--chart-accent-color);
+  background: var(--primary);
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
+}
+
+.content .tab-content {
+  display: none;
+}
+
+.content .tab-content.active {
+  display: block;
 }
 
 @media screen and (min-width: 768px) {
@@ -242,17 +255,33 @@ body {
     height: 100vh;
   }
   .container {
+    position: relative;
     width: 100%;
     max-width: 1000px;
-    min-height: 600px;
+    max-height: 670px;
     margin: auto;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 300px auto;
         grid-template-columns: 300px auto;
+    -webkit-box-shadow: 0 0 var(--shadow-depth) var(--shadow-color);
+            box-shadow: 0 0 var(--shadow-depth) var(--shadow-color);
   }
-  .theme-control {
-    position: static;
+  .content {
+    height: 620px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .content::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+  .content::-webkit-scrollbar-button {
+    display: none;
+  }
+  .content::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
   }
 }
 
