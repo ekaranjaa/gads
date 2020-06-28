@@ -1,0 +1,40 @@
+$sm: 425px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1440px;
+
+:root {
+  --wallpaper: linear-gradient(
+    to bottom right,
+    red 0 14%,
+    orange 14% 28%,
+    yellow 28% 42%,
+    green 42% 56%,
+    blue 56% 70%,
+    indigo 70% 84%,
+    violet 84% 98%
+  );
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --blur-depth: 15px;
+  --blur-depth: 50px;
+}
+
+html {
+  --global-text-color: #444;
+  --card-text-color: #fff;
+  --chart-bg: #fff;
+  --chart-accent-color: skyblue;
+  --container-bg: rgba(255, 255, 255, 0.3);
+  --border-color: rgba(255, 255, 255, 0.3);
+  --context-bg: #fff;
+}
+
+html[class="dark-theme"] {
+  --global-text-color: #f1f1f1;
+  --card-text-color: #000;
+  --chart-bg: #333;
+  --chart-accent-color: skyblue;
+  --container-bg: rgba(0, 0, 0, 0.3);
+  --border-color: rgba(0, 0, 0, 0.3);
+  --context-bg: #333;
+}
