@@ -48,18 +48,18 @@ html[class="dark-theme"] {
   outline: none;
 }
 
-body,
-button,
-input {
-  color: var(--global-text-color);
-  font-family: "SFReg";
-}
-
 body {
   background: var(--wallpaper);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+body,
+button,
+input {
+  color: var(--global-text-color);
+  font-family: "SFReg";
 }
 
 .container {
@@ -74,9 +74,26 @@ body {
 
 [class^="card"] {
   margin: 10px auto;
-  border-radius: 10px;
+  position: relative;
   color: var(--card-text-color);
+  border-radius: 10px;
   border: solid 1px var(--border-color);
+  overflow: hidden;
+}
+
+[class^="card"] .icon {
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+[class^="card"] .icon:hover, [class^="card"] .icon:active, [class^="card"] .icon:focus {
+  background: var(--bg);
+}
+
+[class^="card"] .icon svg {
+  fill: var(--card-text-color);
 }
 
 [class^="card"] .chart {
@@ -185,7 +202,7 @@ body {
   cursor: pointer;
 }
 
-.navbar .tab-link:hover:not(.active) {
+.navbar .tab-link:hover:not(.active), .navbar .tab-link:active:not(.active), .navbar .tab-link:focus:not(.active) {
   background: rgba(0, 0, 0, 0.1);
 }
 
@@ -239,6 +256,54 @@ body {
 
 .content .tab-content.active {
   display: block;
+}
+
+.course {
+  margin: 20px 0;
+}
+
+.course-name {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.course a {
+  text-decoration: none;
+  color: var(--global-text-color);
+}
+
+.course a:hover, .course a:active, .course a:focus {
+  text-decoration: underline;
+}
+
+.course .progress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.course span {
+  margin: 0 10px;
+  font-size: 0.8rem;
+}
+
+.course .progress-bar {
+  height: 6px;
+  width: 100%;
+  border-radius: 25px;
+  color: var(--global-text-color);
+  background: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.course .progress-bar .bar {
+  height: 100%;
+  text-align: center;
+  background: var(--primary);
+  border-radius: 25px;
 }
 
 @media screen and (min-width: 768px) {

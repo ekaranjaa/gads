@@ -6,18 +6,18 @@
   outline: none;
 }
 
-body,
-button,
-input {
-  color: var(--global-text-color);
-  font-family: "SFReg";
-}
-
 body {
   background: var(--wallpaper);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+body,
+button,
+input {
+  color: var(--global-text-color);
+  font-family: "SFReg";
 }
 
 .container {
@@ -31,9 +31,28 @@ body {
 
 [class^="card"] {
   margin: 10px auto;
-  border-radius: 10px;
+  position: relative;
   color: var(--card-text-color);
+  border-radius: 10px;
   border: solid 1px var(--border-color);
+  overflow: hidden;
+
+  .icon {
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: var(--bg);
+    }
+
+    svg {
+      fill: var(--card-text-color);
+    }
+  }
 
   .chart {
     color: var(--primary);
@@ -128,7 +147,9 @@ body {
       background: none;
       cursor: pointer;
 
-      &:hover:not(.active) {
+      &:hover:not(.active),
+      &:active:not(.active),
+      &:focus:not(.active) {
         background: rgba(0, 0, 0, 0.1);
       }
 
@@ -184,6 +205,52 @@ body {
 
   &.active {
     display: block;
+  }
+}
+
+.course {
+  margin: 20px 0;
+
+  &-name {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--global-text-color);
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+  }
+
+  span {
+    margin: 0 10px;
+    font-size: 0.8rem;
+  }
+
+  .progress-bar {
+    height: 6px;
+    width: 100%;
+    border-radius: 25px;
+    color: var(--global-text-color);
+    background: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    .bar {
+      height: 100%;
+      text-align: center;
+      background: var(--primary);
+      border-radius: 25px;
+    }
   }
 }
 
