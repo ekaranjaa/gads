@@ -1,5 +1,5 @@
 const overallProgress = {
-    'progress': 34,
+    'progress': 80,
     'link': 'https://app.pluralsight.com/channels/details/eacce069-f072-4a04-bbbd-27e747f68ede'
 }
 const skills = [
@@ -22,23 +22,28 @@ const skills = [
 const courses = [
     {
         'name': 'HTML Fundamentals',
-        'progress': 13,
+        'progress': 61,
         'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
     },
     {
-        'name': 'Making a Web Form Accessible',
-        'progress': 64,
-        'link': 'https://app.pluralsight.com/library/courses/4dd99913-5d17-4c6b-9b14-99785e7861c8'
+        'name': 'Introduction to CSS for Designers',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
+    },
+    {
+        'name': 'JavaScript Getting Started',
+        'progress': 99,
+        'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
     },
     {
         'name': 'Mobile First Responsive Design',
-        'progress': 49,
+        'progress': 100,
         'link': 'https://app.pluralsight.com/library/courses/9358b960-8da3-4f12-a926-e166832d34a3'
     },
     {
-        'name': 'JavaScript: Getting Started',
-        'progress': 29,
-        'link': 'https://app.pluralsight.com/library/courses/804837c6-ac3c-4698-aebd-bc15f629e64e'
+        'name': 'Making a Web Form Accessible',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/4dd99913-5d17-4c6b-9b14-99785e7861c8'
     },
     {
         'name': 'Building a JavaScript Development Environment',
@@ -47,7 +52,7 @@ const courses = [
     },
     {
         'name': 'Progressive Web App Fundamentals',
-        'progress': 1,
+        'progress': 10,
         'link': 'https://app.pluralsight.com/library/courses/7adc2582-8e0b-4ff9-b4a6-073767de12d2'
     }
 ]
