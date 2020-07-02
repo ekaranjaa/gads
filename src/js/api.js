@@ -1,5 +1,5 @@
 const overallProgress = {
-    'progress': 27,
+    'progress': 34,
     'link': 'https://app.pluralsight.com/channels/details/eacce069-f072-4a04-bbbd-27e747f68ede'
 }
 const skills = [
@@ -42,7 +42,7 @@ const courses = [
     },
     {
         'name': 'Building a JavaScript Development Environment',
-        'progress': 30,
+        'progress': 58,
         'link': 'https://app.pluralsight.com/library/courses/1c9c8ed1-a332-4437-92da-a0972a7bccd3'
     },
     {

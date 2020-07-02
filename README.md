@@ -22,5 +22,3 @@ use the following configs for live sass compiler
     }
   ]
 ```
-
-PS: Express is not yet fully configured and may be removed in future
