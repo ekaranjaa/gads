@@ -22,7 +22,7 @@ $xl: 1440px;
 html {
   --primary: skyblue;
   --secondary: #fff;
-  --bg: rgba(255, 255, 255, 0.3);
+  --bg: rgba(255, 255, 255, 0.5);
   --global-text-color: #333;
   --card-text-color: #fff;
   --border-color: rgba(255, 255, 255, 0.3);
@@ -31,8 +31,21 @@ html {
 html[class="dark-theme"] {
   --primary: skyblue;
   --secondary: #333;
-  --bg: rgba(0, 0, 0, 0.3);
+  --bg: rgba(0, 0, 0, 0.5);
   --global-text-color: #f1f1f1;
   --card-text-color: #000;
   --border-color: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root,
+  html,
+  html[class="dark-theme"] {
+    --primary: skyblue;
+    --secondary: #333;
+    --bg: rgba(0, 0, 0, 0.5);
+    --global-text-color: #f1f1f1;
+    --card-text-color: #000;
+    --border-color: rgba(0, 0, 0, 0.3);
+  }
 }

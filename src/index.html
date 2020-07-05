@@ -21,6 +21,10 @@
                     <button class="tab-link" onclick="openTab(event, 'notes')">Notes</button>
                     <button class="tab-link" onclick="openTab(event, 'todos')">Todos</button>
                 </div>
+                <div class="tab-actions">
+                    <button class="btn" data-action="notes">ADD NOTES</button>
+                    <button class="btn" data-action="todos">ADD TODO</button>
+                </div>
                 <div class="theme-control">
                     <input type="checkbox" name="themeToggle" id="themeToggle" class="theme-toggle">
                     <label for="themeToggle" class="theme-switch">
@@ -32,7 +36,6 @@
                 <div id="courses" class="tab-content"></div>
                 <div id="notes" class="tab-content">
                     <div class="notes">
-                        <button class="btn">ADD NOTES</button>
                         <div class="note">
                             <div class="title">
                                 <h3>HTML</h3>
@@ -77,7 +80,6 @@
                                 <label for="todo2">Todo 2</label>
                             </div>
                         </div>
-                        <button class="btn">ADD TODO</button>
                     </div>
                     <hr>
                     <div class="todos-container">

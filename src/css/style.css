@@ -23,7 +23,7 @@
 html {
   --primary: skyblue;
   --secondary: #fff;
-  --bg: rgba(255, 255, 255, 0.3);
+  --bg: rgba(255, 255, 255, 0.5);
   --global-text-color: #333;
   --card-text-color: #fff;
   --border-color: rgba(255, 255, 255, 0.3);
@@ -32,10 +32,23 @@ html {
 html[class="dark-theme"] {
   --primary: skyblue;
   --secondary: #333;
-  --bg: rgba(0, 0, 0, 0.3);
+  --bg: rgba(0, 0, 0, 0.5);
   --global-text-color: #f1f1f1;
   --card-text-color: #000;
   --border-color: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root,
+  html,
+  html[class="dark-theme"] {
+    --primary: skyblue;
+    --secondary: #333;
+    --bg: rgba(0, 0, 0, 0.5);
+    --global-text-color: #f1f1f1;
+    --card-text-color: #000;
+    --border-color: rgba(0, 0, 0, 0.3);
+  }
 }
 
 * {
@@ -227,19 +240,40 @@ hr {
   background: rgba(0, 0, 0, 0.3);
 }
 
-.theme-control {
-  margin: 0 10px;
+.navbar .tab-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
-.theme-toggle {
+.navbar .tab-actions .btn {
+  margin: 0 5px;
   display: none;
 }
 
-.theme-toggle:checked ~ .theme-switch .switch {
+.navbar .tab-actions .btn.active {
+  display: block;
+}
+
+.navbar .theme-control {
+  margin: 0 10px;
+}
+
+.navbar .theme-toggle {
+  display: none;
+}
+
+.navbar .theme-toggle:checked ~ .navbar .theme-switch .switch {
   left: calc(100% - 20px);
 }
 
-.theme-switch {
+.navbar .theme-switch {
   display: block;
   position: relative;
   padding: 5px;
@@ -252,7 +286,7 @@ hr {
   cursor: pointer;
 }
 
-.theme-switch .switch {
+.navbar .theme-switch .switch {
   display: block;
   position: absolute;
   top: 50%;

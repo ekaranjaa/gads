@@ -1,5 +1,5 @@
 const overallProgress = {
-    'progress': 80,
+    'progress': 95,
     'link': 'https://app.pluralsight.com/channels/details/eacce069-f072-4a04-bbbd-27e747f68ede'
 }
 const skills = [
@@ -32,7 +32,7 @@ const courses = [
     },
     {
         'name': 'JavaScript Getting Started',
-        'progress': 99,
+        'progress': 100,
         'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
     },
     {
@@ -47,13 +47,18 @@ const courses = [
     },
     {
         'name': 'Building a JavaScript Development Environment',
-        'progress': 58,
+        'progress': 100,
         'link': 'https://app.pluralsight.com/library/courses/1c9c8ed1-a332-4437-92da-a0972a7bccd3'
     },
     {
         'name': 'Progressive Web App Fundamentals',
-        'progress': 10,
+        'progress': 100,
         'link': 'https://app.pluralsight.com/library/courses/7adc2582-8e0b-4ff9-b4a6-073767de12d2'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
     }
 ]
 
