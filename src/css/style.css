@@ -82,7 +82,8 @@ hr {
 }
 
 .btn {
-  padding: 5px 10px;
+  padding: 5px;
+  font-size: 0.8rem;
   display: block;
   border-radius: 3px;
   border: solid 1px #30aadc;
@@ -225,7 +226,7 @@ hr {
 }
 
 .navbar .tab-link {
-  padding: 14px 28px;
+  padding: 10px 20px;
   border: none;
   height: 100%;
   background: none;
@@ -261,19 +262,19 @@ hr {
   display: block;
 }
 
-.navbar .theme-control {
+.theme-control {
   margin: 0 10px;
 }
 
-.navbar .theme-toggle {
+.theme-toggle {
   display: none;
 }
 
-.navbar .theme-toggle:checked ~ .navbar .theme-switch .switch {
+.theme-toggle:checked ~ .theme-switch .switch {
   left: calc(100% - 20px);
 }
 
-.navbar .theme-switch {
+.theme-switch {
   display: block;
   position: relative;
   padding: 5px;
@@ -286,7 +287,7 @@ hr {
   cursor: pointer;
 }
 
-.navbar .theme-switch .switch {
+.theme-switch .switch {
   display: block;
   position: absolute;
   top: 50%;
@@ -307,6 +308,7 @@ hr {
 
 .content .tab-content.active {
   display: block;
+  font-size: 1rem;
 }
 
 .course {
@@ -431,6 +433,9 @@ hr {
             justify-content: center;
     min-height: 100vh;
   }
+  .btn {
+    padding: 5px 10px;
+  }
   .container {
     position: relative;
     width: 100%;
@@ -459,6 +464,9 @@ hr {
   .content::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.3);
     cursor: pointer;
+  }
+  .navbar .tab-link {
+    padding: 14px 28px;
   }
   .notes {
     display: -ms-grid;
