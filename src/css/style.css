@@ -83,7 +83,6 @@ hr {
 
 .btn {
   padding: 5px;
-  font-size: 0.8rem;
   display: block;
   border-radius: 3px;
   border: solid 1px #30aadc;
@@ -255,6 +254,7 @@ hr {
 
 .navbar .tab-actions .btn {
   margin: 0 5px;
+  font-size: 0.7rem;
   display: none;
 }
 
@@ -308,7 +308,6 @@ hr {
 
 .content .tab-content.active {
   display: block;
-  font-size: 1rem;
 }
 
 .course {
@@ -463,6 +462,7 @@ hr {
   }
   .content::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
     cursor: pointer;
   }
   .navbar .tab-link {

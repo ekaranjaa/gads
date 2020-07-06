@@ -28,7 +28,6 @@ hr {
 
 .btn {
   padding: 5px;
-  font-size: 0.8rem;
   display: block;
   border-radius: 3px;
   border: solid 1px darken(skyblue, 20%);
@@ -182,6 +181,7 @@ hr {
 
       .btn {
         margin: 0 5px;
+        font-size: 0.7rem;
         display: none;
 
         &.active {
@@ -237,7 +237,7 @@ hr {
 
   &.active {
     display: block;
-    font-size: 1rem;
+    // font-size: 1rem;
   }
 }
 
@@ -381,12 +381,15 @@ hr {
 
     &::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.3);
+      border-radius: 25px;
       cursor: pointer;
     }
   }
 
-  .navbar .tab-link {
-    padding: 14px 28px;
+  .navbar .tab {
+    &-link {
+      padding: 14px 28px;
+    }
   }
 
   .notes {
