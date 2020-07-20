@@ -75,20 +75,29 @@ input {
   font-family: "SFReg";
 }
 
-hr {
-  margin: 20px 0;
-  border: none;
-  border-top: solid 1px rgba(0, 0, 0, 0.3);
-}
-
 .btn {
   padding: 5px;
   display: block;
   border-radius: 3px;
-  border: solid 1px #30aadc;
+  border: none;
   background: -webkit-gradient(linear, left top, right bottom, from(#30aadc), to(skyblue));
   background: linear-gradient(to bottom right, #30aadc, skyblue);
   cursor: pointer;
+}
+
+.task-controls button {
+  margin: 0 5px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.task-controls .edit {
+  color: orange;
+}
+
+.task-controls .delete {
+  color: red;
 }
 
 .container {
@@ -111,18 +120,15 @@ hr {
 }
 
 [class^="card"] .icon {
-  padding: 5px;
+  padding: 10px;
   position: absolute;
   top: 0;
   right: 0;
+  color: var(--card-text-color);
 }
 
 [class^="card"] .icon:hover, [class^="card"] .icon:active, [class^="card"] .icon:focus {
   background: var(--bg);
-}
-
-[class^="card"] .icon svg {
-  fill: var(--card-text-color);
 }
 
 [class^="card"] .chart {
@@ -216,7 +222,8 @@ hr {
   background: var(--bg);
   -webkit-backdrop-filter: blur(var(--blur-depth));
           backdrop-filter: blur(var(--blur-depth));
-  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
@@ -240,6 +247,10 @@ hr {
   background: rgba(0, 0, 0, 0.3);
 }
 
+.navbar .tab-link span {
+  display: none;
+}
+
 .navbar .tab-actions {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -260,6 +271,15 @@ hr {
 
 .navbar .tab-actions .btn.active {
   display: block;
+}
+
+.navbar .countdown {
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  background: red;
 }
 
 .theme-control {
@@ -367,56 +387,69 @@ hr {
 }
 
 .notes .note {
-  margin: 10px;
-  padding: 10px;
-  border: solid 1px rgba(0, 0, 0, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  margin: 20px 0;
+  -webkit-box-shadow: 0 5px 5px var(--shadow-color), 0 10px 0 -2px var(--bg), 0 15px 5px -4px var(--shadow-color), 0 20px 0 -6px var(--bg), 0 25px 5px -8px var(--shadow-color);
+          box-shadow: 0 5px 5px var(--shadow-color), 0 10px 0 -2px var(--bg), 0 15px 5px -4px var(--shadow-color), 0 20px 0 -6px var(--bg), 0 25px 5px -8px var(--shadow-color);
+  background: var(--bg);
   overflow: hidden;
 }
 
-.notes .note .title {
-  margin-bottom: 10px;
+.notes .note:hover .task-controls,
+.notes .note:active .task-controls,
+.notes .note:focus .task-controls {
+  display: block;
 }
 
-.todos-container {
+.notes .note .title,
+.notes .note .text {
   padding: 10px;
 }
 
-.todos-container p {
-  margin-bottom: 10px;
-  font-size: 1.3em;
-}
-
-.todos-container .todo {
-  margin: 10px 0;
+.notes .note .title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.todos-container .todo input,
-.todos-container .todo label {
+.notes .note .task-controls {
+  display: none;
+}
+
+.todos-container {
+  padding: 10px;
+}
+
+.todos-container .todo {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.todos-container .todo:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.todos-container .todo:hover .task-controls,
+.todos-container .todo:active .task-controls,
+.todos-container .todo:focus .task-controls {
   display: block;
 }
 
-.todos-container .todo label {
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.todos-container .todo input[type="checkbox"]:checked ~ label {
-  text-decoration: line-through;
-}
-
-.todos-container .btn {
-  margin-top: 20px;
+.todos-container .todo .task-controls {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -468,11 +501,23 @@ hr {
   .navbar .tab-link {
     padding: 14px 28px;
   }
+  .navbar .tab-link i {
+    display: none;
+  }
+  .navbar .tab-link span {
+    display: block;
+  }
+  .navbar .tab-actions .btn {
+    font-size: 1rem;
+  }
   .notes {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
+  }
+  .notes .note {
+    margin: 10px;
   }
 }
 

@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#fff">
-    <meta name="description" content="Emmanuel's progress and performance at GADS 2020 MWS track.">
+    <meta name="description" content="App by Emmanuel - GADS 2020 MWS track student.">
     <title>GADS 2020 MWS - Emmanuel Karanja</title>
+    <script src="https://kit.fontawesome.com/885fbd8d84.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./images/logo.png">
 </head>
@@ -17,14 +18,24 @@
         <div class="context">
             <nav class="navbar">
                 <div class="tab-controls">
-                    <button class="tab-link default" onclick="openTab(event, 'courses')">Courses</button>
-                    <button class="tab-link" onclick="openTab(event, 'notes')">Notes</button>
-                    <button class="tab-link" onclick="openTab(event, 'todos')">Todos</button>
+                    <button name="courses" class="tab-link" onclick="openTab(event, 'courses')">
+                        <i class="fas fa-book-reader"></i>
+                        <span>Courses</span>
+                    </button>
+                    <button name="notes" class="tab-link" onclick="openTab(event, 'notes')">
+                        <i class="fas fa-book"></i>
+                        <span>Notes</span>
+                    </button>
+                    <button name="todos" class="tab-link" onclick="openTab(event, 'todos')">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Todos</span>
+                    </button>
                 </div>
                 <div class="tab-actions">
                     <button class="btn" data-action="notes">ADD NOTES</button>
                     <button class="btn" data-action="todos">ADD TODO</button>
                 </div>
+                <div id="countdown" class="countdown"></div>
                 <div class="theme-control">
                     <input type="checkbox" name="themeToggle" id="themeToggle" class="theme-toggle">
                     <label for="themeToggle" class="theme-switch">
@@ -39,6 +50,10 @@
                         <div class="note">
                             <div class="title">
                                 <h3>HTML</h3>
+                                <div class="task-controls">
+                                    <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
+                                    <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
                             <div class="text">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur animi in, minus
@@ -50,6 +65,10 @@
                         <div class="note">
                             <div class="title">
                                 <h3>CSS</h3>
+                                <div class="task-controls">
+                                    <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
+                                    <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
                             <div class="text">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur animi in, minus
@@ -61,6 +80,10 @@
                         <div class="note">
                             <div class="title">
                                 <h3>JavaScript</h3>
+                                <div class="task-controls">
+                                    <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
+                                    <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
                             <div class="text">
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur animi in, minus
@@ -73,21 +96,20 @@
                 </div>
                 <div id="todos" class="tab-content">
                     <div class="todos-container pending">
-                        <p>Pending Todos</p>
                         <div class="todos-wrapper">
                             <div class="todo">
-                                <input type="checkbox" name="todo" id="todo2">
-                                <label for="todo2">Todo 2</label>
+                                <span>Todo 1</span>
+                                <div class="task-controls">
+                                    <button class="edit" title="Edit todo"><i class="fas fa-edit"></i></button>
+                                    <button class="delete" title="Delete todo"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="todos-container">
-                        <p>Done Todos</p>
-                        <div class="todos-wrapper done">
                             <div class="todo">
-                                <input type="checkbox" name="todo" id="todo1" checked>
-                                <label for="todo1">Todo 1</label>
+                                <span>Todo 2</span>
+                                <div class="task-controls">
+                                    <button class="edit" title="Edit todo"><i class="fas fa-edit"></i></button>
+                                    <button class="delete" title="Delete todo"><i class="fas fa-trash-alt"></i></button>
+                                </div>
                             </div>
                         </div>
                     </div>
