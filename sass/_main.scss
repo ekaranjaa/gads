@@ -15,9 +15,52 @@ body {
 
 body,
 button,
-input {
+.input {
   color: var(--global-text-color);
   font-family: "SFReg";
+}
+
+form[class$="-form"] {
+  padding: 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  border-radius: 5px;
+  background: var(--secondary);
+  box-shadow: 0 5px 20px var(--secondary-darker);
+  z-index: 10;
+  display: none;
+
+  .input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-bottom: solid 1px var(--border-color);
+    display: block;
+    transition: 0.2s ease-in-out;
+
+    &:focus {
+      border-color: var(--primary);
+    }
+
+    &.note-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .form-controls {
+    float: right;
+    display: flex;
+    align-items: center;
+
+    .btn {
+      margin-left: 10px;
+    }
+  }
 }
 
 .btn {
@@ -55,7 +98,7 @@ input {
   padding: 10px;
 }
 
-[class^="card"] {
+div[class^="card"] {
   margin: 10px auto;
   position: relative;
   color: var(--card-text-color);
@@ -142,7 +185,6 @@ input {
 }
 
 .content {
-  padding: 10px;
   line-height: 1.4rem;
 }
 
@@ -254,6 +296,8 @@ input {
 }
 
 .content .tab-content {
+  padding: 10px;
+  position: relative;
   display: none;
 
   &.active {
@@ -310,10 +354,6 @@ input {
 .notes {
   position: relative;
 
-  .btn {
-    margin: 10px;
-  }
-
   .note {
     margin: 20px 0;
     box-shadow: 0 5px 5px var(--shadow-color), 0 10px 0 -2px var(--bg),
@@ -345,7 +385,7 @@ input {
   }
 }
 
-.todos-container {
+.todos {
   padding: 10px;
 
   .todo {
@@ -425,10 +465,6 @@ input {
       span {
         display: block;
       }
-    }
-
-    &-actions .btn {
-      font-size: 1rem;
     }
   }
 

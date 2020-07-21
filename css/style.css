@@ -23,19 +23,21 @@
 html {
   --primary: skyblue;
   --secondary: #fff;
+  --secondary-darker: #ccc;
   --bg: rgba(255, 255, 255, 0.5);
   --global-text-color: #333;
   --card-text-color: #fff;
-  --border-color: rgba(255, 255, 255, 0.3);
+  --border-color: rgba(255, 255, 255, 0.5);
 }
 
 html[class="dark-theme"] {
   --primary: skyblue;
-  --secondary: #333;
+  --secondary: #222;
+  --secondary-darker: #000;
   --bg: rgba(0, 0, 0, 0.5);
   --global-text-color: #f1f1f1;
   --card-text-color: #000;
-  --border-color: rgba(0, 0, 0, 0.3);
+  --border-color: rgba(0, 0, 0, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,11 +45,12 @@ html[class="dark-theme"] {
   html,
   html[class="dark-theme"] {
     --primary: skyblue;
-    --secondary: #333;
+    --secondary: #222;
+    --secondary-darker: #000;
     --bg: rgba(0, 0, 0, 0.5);
     --global-text-color: #f1f1f1;
     --card-text-color: #000;
-    --border-color: rgba(0, 0, 0, 0.3);
+    --border-color: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -70,9 +73,58 @@ body {
 
 body,
 button,
-input {
+.input {
   color: var(--global-text-color);
   font-family: "SFReg";
+}
+
+form[class$="-form"] {
+  padding: 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  border-radius: 5px;
+  background: var(--secondary);
+  -webkit-box-shadow: 0 5px 20px var(--secondary-darker);
+          box-shadow: 0 5px 20px var(--secondary-darker);
+  z-index: 10;
+  display: none;
+}
+
+form[class$="-form"] .input {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-bottom: solid 1px var(--border-color);
+  display: block;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+form[class$="-form"] .input:focus {
+  border-color: var(--primary);
+}
+
+form[class$="-form"] .input.note-title {
+  font-size: 1.5rem;
+}
+
+form[class$="-form"] .form-controls {
+  float: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form[class$="-form"] .form-controls .btn {
+  margin-left: 10px;
 }
 
 .btn {
@@ -110,7 +162,7 @@ input {
   padding: 10px;
 }
 
-[class^="card"] {
+div[class^="card"] {
   margin: 10px auto;
   position: relative;
   color: var(--card-text-color);
@@ -119,7 +171,7 @@ input {
   overflow: hidden;
 }
 
-[class^="card"] .icon {
+div[class^="card"] .icon {
   padding: 10px;
   position: absolute;
   top: 0;
@@ -127,17 +179,17 @@ input {
   color: var(--card-text-color);
 }
 
-[class^="card"] .icon:hover, [class^="card"] .icon:active, [class^="card"] .icon:focus {
+div[class^="card"] .icon:hover, div[class^="card"] .icon:active, div[class^="card"] .icon:focus {
   background: var(--bg);
 }
 
-[class^="card"] .chart {
+div[class^="card"] .chart {
   color: var(--primary);
   position: relative;
   border-radius: 50%;
 }
 
-[class^="card"] .chart::before {
+div[class^="card"] .chart::before {
   content: attr(data-progress);
   font-weight: bold;
   text-align: center;
@@ -200,7 +252,6 @@ input {
 }
 
 .content {
-  padding: 10px;
   line-height: 1.4rem;
 }
 
@@ -323,6 +374,8 @@ input {
 }
 
 .content .tab-content {
+  padding: 10px;
+  position: relative;
   display: none;
 }
 
@@ -382,10 +435,6 @@ input {
   position: relative;
 }
 
-.notes .btn {
-  margin: 10px;
-}
-
 .notes .note {
   margin: 20px 0;
   -webkit-box-shadow: 0 5px 5px var(--shadow-color), 0 10px 0 -2px var(--bg), 0 15px 5px -4px var(--shadow-color), 0 20px 0 -6px var(--bg), 0 25px 5px -8px var(--shadow-color);
@@ -421,11 +470,11 @@ input {
   display: none;
 }
 
-.todos-container {
+.todos {
   padding: 10px;
 }
 
-.todos-container .todo {
+.todos .todo {
   padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -438,17 +487,17 @@ input {
           justify-content: space-between;
 }
 
-.todos-container .todo:nth-child(odd) {
+.todos .todo:nth-child(odd) {
   background: rgba(0, 0, 0, 0.1);
 }
 
-.todos-container .todo:hover .task-controls,
-.todos-container .todo:active .task-controls,
-.todos-container .todo:focus .task-controls {
+.todos .todo:hover .task-controls,
+.todos .todo:active .task-controls,
+.todos .todo:focus .task-controls {
   display: block;
 }
 
-.todos-container .todo .task-controls {
+.todos .todo .task-controls {
   display: none;
 }
 
@@ -506,9 +555,6 @@ input {
   }
   .navbar .tab-link span {
     display: block;
-  }
-  .navbar .tab-actions .btn {
-    font-size: 1rem;
   }
   .notes {
     display: -ms-grid;

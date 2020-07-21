@@ -32,8 +32,8 @@
                     </button>
                 </div>
                 <div class="tab-actions">
-                    <button class="btn" data-action="notes">ADD NOTES</button>
-                    <button class="btn" data-action="todos">ADD TODO</button>
+                    <button class="btn" data-action="notes" onclick="toggleForm('notesForm')">ADD NOTES</button>
+                    <button class="btn" data-action="todos" onclick="toggleForm('todosForm')">ADD TODO</button>
                 </div>
                 <div id="countdown" class="countdown"></div>
                 <div class="theme-control">
@@ -46,73 +46,26 @@
             <div class="content">
                 <div id="courses" class="tab-content"></div>
                 <div id="notes" class="tab-content">
-                    <div class="notes">
-                        <div class="note">
-                            <div class="title">
-                                <h3>HTML</h3>
-                                <div class="task-controls">
-                                    <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
-                                    <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur animi in, minus
-                                    maiores minima blanditiis reiciendis est ducimus sit, iusto eligendi nam nobis
-                                    sapiente,
-                                    natus optio similique. Debitis, harum excepturi.</p>
-                            </div>
+                    <form id="notesForm" class="notes-form" autocomplete="off">
+                        <input type="text" class="input note-title" placeholder="Title">
+                        <textarea name="body" class="input note-body" cols="30" rows="5" placeholder="Body"></textarea>
+                        <div class="form-controls">
+                            <button type="button" class="btn" onclick="closeForm('notesForm')">Cancel</button>
+                            <button type="submit" class="btn">Save</button>
                         </div>
-                        <div class="note">
-                            <div class="title">
-                                <h3>CSS</h3>
-                                <div class="task-controls">
-                                    <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
-                                    <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur animi in, minus
-                                    maiores minima blanditiis reiciendis est ducimus sit, iusto eligendi nam nobis
-                                    sapiente,
-                                    natus optio similique. Debitis, harum excepturi.</p>
-                            </div>
-                        </div>
-                        <div class="note">
-                            <div class="title">
-                                <h3>JavaScript</h3>
-                                <div class="task-controls">
-                                    <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
-                                    <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                            <div class="text">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur animi in, minus
-                                    maiores minima blanditiis reiciendis est ducimus sit, iusto eligendi nam nobis
-                                    sapiente,
-                                    natus optio similique. Debitis, harum excepturi.</p>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
+                    <div class="notes"></div>
                 </div>
                 <div id="todos" class="tab-content">
-                    <div class="todos-container pending">
-                        <div class="todos-wrapper">
-                            <div class="todo">
-                                <span>Todo 1</span>
-                                <div class="task-controls">
-                                    <button class="edit" title="Edit todo"><i class="fas fa-edit"></i></button>
-                                    <button class="delete" title="Delete todo"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
-                            <div class="todo">
-                                <span>Todo 2</span>
-                                <div class="task-controls">
-                                    <button class="edit" title="Edit todo"><i class="fas fa-edit"></i></button>
-                                    <button class="delete" title="Delete todo"><i class="fas fa-trash-alt"></i></button>
-                                </div>
-                            </div>
+                    <form id="todosForm" class="todos-form" autocomplete="off">
+                        <input type="text" class="input todo" placeholder="Todo">
+                        <div class="form-controls">
+                            <button type="button" class="btn" onclick="closeForm('todosForm')">Cancel</button>
+                            <button type="submit" class="btn">Save</button>
                         </div>
-                    </div>
+                    </form>
+                    <div class="todos"></div>
+                    <button class="btn clear-todos">Clear todos</button>
                 </div>
             </div>
         </div>
@@ -120,6 +73,8 @@
 
     <script src="./js/api.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/notes.js"></script>
+    <script src="./js/todos.js"></script>
 </body>
 
 </html>

@@ -5,12 +5,12 @@ A project I created during the learning phase of GADS 2020
 ## Project setup
 
 Run `npm i` to install all npm packages
-In vscode, install
+In vscode, install the following extensions
 
 > live sass compiler
 > live server
 
-use the following configs for live sass compiler
+use the following configs for `live sass compiler`
 
 ```
 "liveSassCompile.settings.generateMap": false
@@ -18,7 +18,7 @@ use the following configs for live sass compiler
     {
       "format": "expanded",
       "extensionName": ".css",
-      "savePath": "/src/css"
+      "savePath": "/css"
     }
   ]
 ```

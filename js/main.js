@@ -8,28 +8,32 @@ window.onload = () => {
 
 themeToggle.onchange = () => {
     if (themeToggle.checked === false) {
-        localStorage.setItem('theme', 'default')
+        rememberTheme('default')
         document.documentElement.classList.remove('dark-theme')
         document.querySelector("meta[name=theme-color]").setAttribute("content", "#fff")
     } else {
-        localStorage.setItem('theme', 'dark')
+        rememberTheme('dark')
         document.documentElement.classList.toggle('dark-theme')
         document.querySelector("meta[name=theme-color]").setAttribute("content", "#333")
     }
 }
 
+function rememberTheme(theme) {
+    localStorage.setItem('theme', theme)
+}
+
 // Initiate countdown
 (() => {
-    let countDownDate = new Date("Jul 21, 2020 10:00:00").getTime()
+    const countDownDate = new Date("Jul 21, 2020 10:00:00").getTime()
 
-    let x = setInterval(() => {
-        let now = new Date().getTime()
-        let distance = countDownDate - now
+    const x = setInterval(() => {
+        const now = new Date().getTime()
+        const distance = countDownDate - now
 
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24))
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000)
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
         document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`
 
@@ -67,7 +71,7 @@ function openTab(e, tabId) {
 
     persistTab(tabId)
     document.getElementById(tabId).classList.add('active')
-    e.target.classList.add('active')
+    e.currentTarget.classList.add('active')
 }
 
 function persistTab(tabId) {
@@ -108,6 +112,16 @@ function persistTab(tabId) {
 
         if (tabAction.getAttribute('data-action') === activeTab) {
             tabAction.classList.add('active')
+        } else {
+            tabAction.classList.remove('active')
         }
     }
 })()
+
+function toggleForm(formId) {
+    document.getElementById(formId).style.display = 'block'
+}
+
+function closeForm(formId) {
+    document.getElementById(formId).style.display = 'none'
+}
