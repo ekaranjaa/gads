@@ -24,7 +24,7 @@ function rememberTheme(theme) {
 
 // Initiate countdown
 (() => {
-    const countDownDate = new Date("Jul 21, 2020 00:00:00").getTime()
+    const countDownDate = new Date("Jul 22, 2020 00:00:00").getTime()
 
     const x = setInterval(() => {
         const now = new Date().getTime()
