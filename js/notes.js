@@ -102,3 +102,22 @@ function removeNoteFromLocalStorage(noteItem) {
 
     localStorage.setItem('notes', JSON.stringify(notes))
 }
+
+(() => {
+    const notes = [
+        {
+            'title': 'HTML',
+            'body': 'Hypertext Markup Language, a standardized system for tagging text files to achieve font, colour, graphic, and hyperlink effects on World Wide Web pages.'
+        },
+        {
+            'title': 'JavaScript',
+            'body': 'An object-oriented computer programming language commonly used to create interactive effects within web browsers.'
+        },
+        {
+            'title': 'CSS',
+            'body': 'CSS stands for Cascading Style Sheets. CSS describes how HTML elements are to be displayed on screen, paper, or in other media. CSS saves a lot of work. It can control the layout of multiple web pages all at once.'
+        }
+    ]
+
+    localStorage.setItem('notes', JSON.stringify(notes))
+})()

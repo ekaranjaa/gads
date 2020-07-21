@@ -125,3 +125,8 @@ function monitorClearButton() {
     }
 
 }
+
+(() => {
+    let todos = ['Todo 1', 'Todo 2', 'Todo 3']
+    localStorage.setItem('todos', JSON.stringify(todos))
+})()
