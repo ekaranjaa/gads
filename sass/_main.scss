@@ -20,17 +20,26 @@ button,
   font-family: "SFReg";
 }
 
-form[class$="-form"] {
+.notes-form,
+.todos-form {
   padding: 20px;
   position: absolute;
-  top: 20px;
+  top: 0;
   left: 20px;
   right: 20px;
   border-radius: 5px;
   background: var(--secondary);
   box-shadow: 0 5px 20px var(--secondary-darker);
   z-index: 10;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.15s ease-in-out;
+
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    top: 20px;
+  }
 
   .input {
     margin: 10px 0;
@@ -41,7 +50,7 @@ form[class$="-form"] {
     border: none;
     border-bottom: solid 1px var(--border-color);
     display: block;
-    transition: 0.2s ease-in-out;
+    transition: 0.15s ease-in-out;
 
     &:focus {
       border-color: var(--primary);
@@ -185,7 +194,29 @@ div[class^="card"] {
 }
 
 .content {
+  position: relative;
   line-height: 1.4rem;
+
+  &::before {
+    content: "";
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    transition: 0.15s ease-in-out;
+  }
+
+  &.overlay {
+    &::before {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 }
 
 .navbar {

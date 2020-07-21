@@ -23,7 +23,7 @@
 html {
   --primary: skyblue;
   --secondary: #fff;
-  --secondary-darker: #ccc;
+  --secondary-darker: #999;
   --bg: rgba(255, 255, 255, 0.5);
   --global-text-color: #333;
   --card-text-color: #fff;
@@ -78,10 +78,11 @@ button,
   font-family: "SFReg";
 }
 
-form[class$="-form"] {
+.notes-form,
+.todos-form {
   padding: 20px;
   position: absolute;
-  top: 20px;
+  top: 0;
   left: 20px;
   right: 20px;
   border-radius: 5px;
@@ -89,10 +90,21 @@ form[class$="-form"] {
   -webkit-box-shadow: 0 5px 20px var(--secondary-darker);
           box-shadow: 0 5px 20px var(--secondary-darker);
   z-index: 10;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
 }
 
-form[class$="-form"] .input {
+.notes-form.active,
+.todos-form.active {
+  visibility: visible;
+  opacity: 1;
+  top: 20px;
+}
+
+.notes-form .input,
+.todos-form .input {
   margin: 10px 0;
   padding: 10px;
   width: 100%;
@@ -101,19 +113,22 @@ form[class$="-form"] .input {
   border: none;
   border-bottom: solid 1px var(--border-color);
   display: block;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
 }
 
-form[class$="-form"] .input:focus {
+.notes-form .input:focus,
+.todos-form .input:focus {
   border-color: var(--primary);
 }
 
-form[class$="-form"] .input.note-title {
+.notes-form .input.note-title,
+.todos-form .input.note-title {
   font-size: 1.5rem;
 }
 
-form[class$="-form"] .form-controls {
+.notes-form .form-controls,
+.todos-form .form-controls {
   float: right;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -123,7 +138,8 @@ form[class$="-form"] .form-controls {
           align-items: center;
 }
 
-form[class$="-form"] .form-controls .btn {
+.notes-form .form-controls .btn,
+.todos-form .form-controls .btn {
   margin-left: 10px;
 }
 
@@ -252,7 +268,28 @@ div[class^="card"] .chart::before {
 }
 
 .content {
+  position: relative;
   line-height: 1.4rem;
+}
+
+.content::before {
+  content: "";
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  -webkit-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+
+.content.overlay::before {
+  visibility: visible;
+  opacity: 1;
 }
 
 .navbar {

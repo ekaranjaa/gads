@@ -119,9 +119,11 @@ function persistTab(tabId) {
 })()
 
 function toggleForm(formId) {
-    document.getElementById(formId).style.display = 'block'
+    document.getElementById(formId).classList.toggle('active')
+    document.querySelector('.content').classList.toggle('overlay')
 }
 
 function closeForm(formId) {
-    document.getElementById(formId).style.display = 'none'
+    document.getElementById(formId).classList.toggle('active')
+    document.querySelector('.content').classList.toggle('overlay')
 }
