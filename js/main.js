@@ -14,7 +14,7 @@ themeToggle.onchange = () => {
     } else {
         rememberTheme('dark')
         document.documentElement.classList.toggle('dark-theme')
-        document.querySelector("meta[name=theme-color]").setAttribute("content", "#333")
+        document.querySelector("meta[name=theme-color]").setAttribute("content", "#222")
     }
 }
 
@@ -24,7 +24,7 @@ function rememberTheme(theme) {
 
 // Initiate countdown
 (() => {
-    const countDownDate = new Date("Jul 21, 2020 10:00:00").getTime()
+    const countDownDate = new Date("Jul 22, 2020 00:00:00").getTime()
 
     const x = setInterval(() => {
         const now = new Date().getTime()
