@@ -232,15 +232,14 @@ div[class^="card"] {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   z-index: 1;
 
-  .tab {
+  .nav {
     &-controls {
       height: 100%;
     }
 
     &-link {
-      padding: 10px 20px;
+      padding: 10px 15px;
       border: none;
-      height: 100%;
       background: none;
       cursor: pointer;
 
@@ -328,11 +327,47 @@ div[class^="card"] {
 
 .content .tab-content {
   padding: 10px;
+  height: 100%;
   position: relative;
   display: none;
 
   &.active {
     display: block;
+  }
+
+  .emptyContent {
+    text-align: center;
+    font-size: 1.5rem;
+    grid-column: 1 / span all;
+    display: none;
+
+    .fas {
+      margin: auto;
+      margin-bottom: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 3rem;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+    }
+  }
+
+  .notes,
+  .todos {
+    &.empty {
+      height: 100%;
+      display: grid;
+      place-items: center;
+
+      .emptyContent {
+        display: block;
+      }
+    }
+  }
+
+  .clear-todos {
+    margin-top: 10px;
   }
 }
 
@@ -416,28 +451,24 @@ div[class^="card"] {
   }
 }
 
-.todos {
+.todos .todo {
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  .todo {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  &:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.1);
+  }
 
-    &:nth-child(odd) {
-      background: rgba(0, 0, 0, 0.1);
-    }
+  &:hover .task-controls,
+  &:active .task-controls,
+  &:focus .task-controls {
+    display: block;
+  }
 
-    &:hover .task-controls,
-    &:active .task-controls,
-    &:focus .task-controls {
-      display: block;
-    }
-
-    .task-controls {
-      display: none;
-    }
+  .task-controls {
+    display: none;
   }
 }
 
@@ -457,15 +488,22 @@ div[class^="card"] {
     position: relative;
     width: 100%;
     max-width: 1000px;
-    max-height: 670px;
+    height: 670px;
     margin: auto;
     display: grid;
     grid-template-columns: 300px auto;
     box-shadow: 0 0 var(--shadow-depth) var(--shadow-color);
+    overflow: hidden;
+  }
+
+  .context {
+    height: 100%;
+    background: var(--secondary);
+    overflow: hidden;
   }
 
   .content {
-    height: 620px;
+    height: calc(100% - 36px);
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -485,10 +523,8 @@ div[class^="card"] {
     }
   }
 
-  .navbar .tab {
+  .navbar .nav {
     &-link {
-      padding: 14px 28px;
-
       i {
         display: none;
       }

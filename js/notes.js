@@ -7,6 +7,21 @@ notesForm.onsubmit = addNote
 notesTab.onclick = removeNote
 document.addEventListener('DOMContentLoaded', getNotes)
 
+function inspectNotes() {
+    let notes
+    if (localStorage.getItem('notes') === null) {
+        notes = []
+    } else {
+        notes = JSON.parse(localStorage.getItem('notes'))
+    }
+
+    if (notes.length > 0) {
+        notesTab.classList.remove('empty')
+    } else {
+        notesTab.classList.add('empty')
+    }
+}
+
 function getNotes() {
     let notes
     if (localStorage.getItem('notes') === null) {
@@ -14,6 +29,8 @@ function getNotes() {
     } else {
         notes = JSON.parse(localStorage.getItem('notes'))
     }
+
+    inspectNotes()
 
     notes.forEach(note => {
         const noteContainer = `
@@ -59,6 +76,7 @@ function addNote(e) {
 
     notesTab.innerHTML += noteContainer
     storeNoteInLocalStorage({ 'title': noteTitle.value, 'body': noteBody.value })
+    inspectNotes()
     noteTitle.value = ''
     noteBody.value = ''
 }
@@ -82,6 +100,7 @@ function removeNote(e) {
         if (confirm('Are You Sure?')) {
             e.target.parentElement.parentElement.parentElement.parentElement.remove()
             removeNoteFromLocalStorage(e.target.parentElement.parentElement.parentElement)
+            inspectNotes()
         }
     }
 }
@@ -102,22 +121,3 @@ function removeNoteFromLocalStorage(noteItem) {
 
     localStorage.setItem('notes', JSON.stringify(notes))
 }
-
-(() => {
-    const notes = [
-        {
-            'title': 'HTML',
-            'body': 'Hypertext Markup Language, a standardized system for tagging text files to achieve font, colour, graphic, and hyperlink effects on World Wide Web pages.'
-        },
-        {
-            'title': 'JavaScript',
-            'body': 'An object-oriented computer programming language commonly used to create interactive effects within web browsers.'
-        },
-        {
-            'title': 'CSS',
-            'body': 'CSS stands for Cascading Style Sheets. CSS describes how HTML elements are to be displayed on screen, paper, or in other media. CSS saves a lot of work. It can control the layout of multiple web pages all at once.'
-        }
-    ]
-
-    localStorage.setItem('notes', JSON.stringify(notes))
-})()

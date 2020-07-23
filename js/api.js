@@ -49,7 +49,67 @@ const courses = [
         'name': 'Git: The Big Picture',
         'progress': 100,
         'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
-    }
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
+    {
+        'name': 'Git: The Big Picture',
+        'progress': 100,
+        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
+    },
 ]
 
 const analyticsContainer = document.getElementById('analytics')

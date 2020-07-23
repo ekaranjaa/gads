@@ -8,6 +8,23 @@ todosTab.onclick = removeTodo
 clearBtn.onclick = clearTodos
 document.addEventListener('DOMContentLoaded', getTodos)
 
+function inspectTodos() {
+    let todos
+    if (localStorage.getItem('todos') === null) {
+        todos = []
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'))
+    }
+
+    if (todos.length > 0) {
+        todosTab.classList.remove('empty')
+        clearBtn.style.display = 'block'
+    } else {
+        todosTab.classList.add('empty')
+        clearBtn.style.display = 'none'
+    }
+}
+
 function getTodos() {
     let todos
     if (localStorage.getItem('todos') === null) {
@@ -16,7 +33,7 @@ function getTodos() {
         todos = JSON.parse(localStorage.getItem('todos'))
     }
 
-    monitorClearButton()
+    inspectTodos()
 
     todos.forEach(todo => {
         const todoContainer = `
@@ -52,8 +69,8 @@ function addTodo(e) {
 
     todosTab.innerHTML += todoContainer
     storeTodoInLocalStorage(todoInput.value)
+    inspectTodos()
     todoInput.value = ''
-    monitorClearButton()
 }
 
 function storeTodoInLocalStorage(todo) {
@@ -75,6 +92,7 @@ function removeTodo(e) {
         if (confirm('Are You Sure?')) {
             e.target.parentElement.parentElement.parentElement.remove()
             removeTodoFromLocalStorage(e.target.parentElement.parentElement.parentElement)
+            inspectTodos()
         }
     }
 }
@@ -102,31 +120,10 @@ function clearTodos() {
             todosTab.removeChild(todosTab.firstChild)
         }
         clearTodosFromLocalStorage()
+        inspectTodos()
     }
 }
 
 function clearTodosFromLocalStorage() {
     localStorage.clear()
-    monitorClearButton()
 }
-
-function monitorClearButton() {
-    let todos
-    if (localStorage.getItem('todos') === null) {
-        todos = []
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'))
-    }
-
-    if (todos.length > 1) {
-        clearBtn.style.display = 'block'
-    } else {
-        clearBtn.style.display = 'none'
-    }
-
-}
-
-(() => {
-    let todos = ['Todo 1', 'Todo 2', 'Todo 3']
-    localStorage.setItem('todos', JSON.stringify(todos))
-})()

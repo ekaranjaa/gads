@@ -315,31 +315,30 @@ div[class^="card"] .chart::before {
   z-index: 1;
 }
 
-.navbar .tab-controls {
+.navbar .nav-controls {
   height: 100%;
 }
 
-.navbar .tab-link {
-  padding: 10px 20px;
+.navbar .nav-link {
+  padding: 10px 15px;
   border: none;
-  height: 100%;
   background: none;
   cursor: pointer;
 }
 
-.navbar .tab-link:hover:not(.active), .navbar .tab-link:active:not(.active), .navbar .tab-link:focus:not(.active) {
+.navbar .nav-link:hover:not(.active), .navbar .nav-link:active:not(.active), .navbar .nav-link:focus:not(.active) {
   background: rgba(0, 0, 0, 0.1);
 }
 
-.navbar .tab-link.active {
+.navbar .nav-link.active {
   background: rgba(0, 0, 0, 0.3);
 }
 
-.navbar .tab-link span {
+.navbar .nav-link span {
   display: none;
 }
 
-.navbar .tab-actions {
+.navbar .nav-actions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -351,13 +350,13 @@ div[class^="card"] .chart::before {
           justify-content: flex-start;
 }
 
-.navbar .tab-actions .btn {
+.navbar .nav-actions .btn {
   margin: 0 5px;
   font-size: 0.7rem;
   display: none;
 }
 
-.navbar .tab-actions .btn.active {
+.navbar .nav-actions .btn.active {
   display: block;
 }
 
@@ -412,12 +411,49 @@ div[class^="card"] .chart::before {
 
 .content .tab-content {
   padding: 10px;
+  height: 100%;
   position: relative;
   display: none;
 }
 
 .content .tab-content.active {
   display: block;
+}
+
+.content .tab-content .emptyContent {
+  text-align: center;
+  font-size: 1.5rem;
+  grid-column: 1 / span all;
+  display: none;
+}
+
+.content .tab-content .emptyContent .fas {
+  margin: auto;
+  margin-bottom: 10px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.content .tab-content .notes.empty,
+.content .tab-content .todos.empty {
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.content .tab-content .notes.empty .emptyContent,
+.content .tab-content .todos.empty .emptyContent {
+  display: block;
+}
+
+.content .tab-content .clear-todos {
+  margin-top: 10px;
 }
 
 .course {
@@ -507,10 +543,6 @@ div[class^="card"] .chart::before {
   display: none;
 }
 
-.todos {
-  padding: 10px;
-}
-
 .todos .todo {
   padding: 10px;
   display: -webkit-box;
@@ -558,7 +590,7 @@ div[class^="card"] .chart::before {
     position: relative;
     width: 100%;
     max-width: 1000px;
-    max-height: 670px;
+    height: 670px;
     margin: auto;
     display: -ms-grid;
     display: grid;
@@ -566,9 +598,15 @@ div[class^="card"] .chart::before {
         grid-template-columns: 300px auto;
     -webkit-box-shadow: 0 0 var(--shadow-depth) var(--shadow-color);
             box-shadow: 0 0 var(--shadow-depth) var(--shadow-color);
+    overflow: hidden;
+  }
+  .context {
+    height: 100%;
+    background: var(--secondary);
+    overflow: hidden;
   }
   .content {
-    height: 620px;
+    height: calc(100% - 36px);
     overflow-x: hidden;
     overflow-y: auto;
   }
@@ -584,13 +622,10 @@ div[class^="card"] .chart::before {
     border-radius: 25px;
     cursor: pointer;
   }
-  .navbar .tab-link {
-    padding: 14px 28px;
-  }
-  .navbar .tab-link i {
+  .navbar .nav-link i {
     display: none;
   }
-  .navbar .tab-link span {
+  .navbar .nav-link span {
     display: block;
   }
   .notes {

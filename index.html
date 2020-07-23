@@ -17,27 +17,27 @@
         <div id="analytics" class="analytics"></div>
         <div class="context">
             <nav class="navbar">
-                <div class="tab-controls">
-                    <button name="courses" class="tab-link" onclick="openTab(event, 'courses')">
+                <div class="nav-controls">
+                    <button name="courses" class="nav-link" onclick="openTab(event, 'courses')">
                         <i class="fas fa-book-reader"></i>
                         <span>Courses</span>
                     </button>
-                    <button name="notes" class="tab-link" onclick="openTab(event, 'notes')">
+                    <button name="notes" class="nav-link" onclick="openTab(event, 'notes')">
                         <i class="fas fa-book"></i>
                         <span>Notes</span>
                     </button>
-                    <button name="todos" class="tab-link" onclick="openTab(event, 'todos')">
+                    <button name="todos" class="nav-link" onclick="openTab(event, 'todos')">
                         <i class="fas fa-clipboard-list"></i>
                         <span>Todos</span>
                     </button>
                 </div>
-                <div class="tab-actions">
+                <div class="nav-actions">
                     <button class="btn" data-action="notes" onclick="toggleForm('notesForm')">ADD NOTES</button>
                     <button class="btn" data-action="todos" onclick="toggleForm('todosForm')">ADD TODO</button>
                 </div>
-                <div id="countdown" class="countdown"></div>
+                <div class="countdown"></div>
                 <div class="theme-control">
-                    <input type="checkbox" name="themeToggle" id="themeToggle" class="theme-toggle">
+                    <input type="checkbox" id="themeToggle" class="theme-toggle">
                     <label for="themeToggle" class="theme-switch">
                         <span class="switch"></span>
                     </label>
@@ -54,7 +54,12 @@
                             <button type="submit" class="btn">Save</button>
                         </div>
                     </form>
-                    <div class="notes"></div>
+                    <div class="notes empty">
+                        <div class="emptyContent">
+                            <i class="fas fa-book"></i>
+                            <p>You have no notes yet</p>
+                        </div>
+                    </div>
                 </div>
                 <div id="todos" class="tab-content">
                     <form id="todosForm" class="todos-form" autocomplete="off">
@@ -64,7 +69,12 @@
                             <button type="submit" class="btn">Save</button>
                         </div>
                     </form>
-                    <div class="todos"></div>
+                    <div class="todos empty">
+                        <div class="emptyContent">
+                            <i class="fas fa-clipboard-list"></i>
+                            <p>You have no todos yet</p>
+                        </div>
+                    </div>
                     <button class="btn clear-todos">Clear todos</button>
                 </div>
             </div>

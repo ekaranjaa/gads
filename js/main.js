@@ -24,7 +24,7 @@ function rememberTheme(theme) {
 
 // Initiate countdown
 (() => {
-    const countDownDate = new Date("Jul 22, 2020 00:00:00").getTime()
+    const countDownDate = new Date("Jul 24, 2020 00:00:00").getTime()
 
     const x = setInterval(() => {
         const now = new Date().getTime()
@@ -35,19 +35,19 @@ function rememberTheme(theme) {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
         const seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
-        document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`
+        document.querySelector(".countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`
 
         if (distance < 0) {
             clearInterval(x)
-            document.getElementById("countdown").innerHTML = "TIME UP"
+            document.querySelector(".countdown").innerHTML = "TIME UP"
         }
     }, 1000)
 })()
 
 function openTab(e, tabId) {
     const tabs = document.querySelectorAll('.tab-content')
-    const tabLinks = document.querySelectorAll('.tab-link')
-    const tabActions = document.querySelectorAll('.tab-actions .btn')
+    const tabLinks = document.querySelectorAll('.nav-link')
+    const tabActions = document.querySelectorAll('.nav-actions .btn')
 
     for (let i = 0; i < tabs.length; i++) {
         const tab = tabs[i];
@@ -81,8 +81,8 @@ function persistTab(tabId) {
 // Get the last tab opened before page reload
 (() => {
     const tabs = document.querySelectorAll('.tab-content')
-    const tabLinks = document.querySelectorAll('.tab-link')
-    const tabActions = document.querySelectorAll('.tab-actions .btn')
+    const tabLinks = document.querySelectorAll('.nav-link')
+    const tabActions = document.querySelectorAll('.nav-actions .btn')
     let activeTab
 
     if (sessionStorage.getItem('tabId') !== null) {
