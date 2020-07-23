@@ -48,6 +48,14 @@ function openTab(e, tabId) {
     const tabs = document.querySelectorAll('.tab-content')
     const tabLinks = document.querySelectorAll('.nav-link')
     const tabActions = document.querySelectorAll('.nav-actions .btn')
+    const forms = document.querySelectorAll("form")
+
+    document.querySelector('.content').classList.remove('overlay')
+
+    for (let i = 0; i < forms.length; i++) {
+        const form = forms[i];
+        form.classList.remove('active')
+    }
 
     for (let i = 0; i < tabs.length; i++) {
         const tab = tabs[i];
@@ -119,11 +127,32 @@ function persistTab(tabId) {
 })()
 
 function toggleForm(formId) {
-    document.getElementById(formId).classList.toggle('active')
+    const form = document.getElementById(formId)
+    form.classList.toggle('active')
+
+    if (form.firstElementChild.classList.contains('input')) {
+        form.firstElementChild.focus()
+    }
+
     document.querySelector('.content').classList.toggle('overlay')
 }
 
 function closeForm(formId) {
-    document.getElementById(formId).classList.toggle('active')
-    document.querySelector('.content').classList.toggle('overlay')
+    document.getElementById(formId).classList.remove('active')
+    document.querySelector('.content').classList.remove('overlay')
 }
+
+(() => {
+    const forms = document.querySelectorAll("form")
+
+    document.body.onkeydown = (e) => {
+        if (e.key === 'Escape') {
+            forms.forEach(form => {
+                if (form.classList.contains('active')) {
+                    form.classList.remove('active')
+                    document.querySelector('.content').classList.remove('overlay')
+                }
+            })
+        }
+    }
+})()

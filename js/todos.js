@@ -55,9 +55,8 @@ function addTodo(e) {
 
     if (todoInput.value === '') {
         alert('Add a todo')
-    }
-
-    const todoContainer = `
+    } else {
+        const todoContainer = `
             <div class="todo">
                 <span>${todoInput.value}</span>
                 <div class="task-controls">
@@ -67,10 +66,13 @@ function addTodo(e) {
             </div>
         `
 
-    todosTab.innerHTML += todoContainer
-    storeTodoInLocalStorage(todoInput.value)
-    inspectTodos()
-    todoInput.value = ''
+        todosTab.innerHTML += todoContainer
+        storeTodoInLocalStorage(todoInput.value)
+        todosForm.classList.toggle('active')
+        document.querySelector('.content').classList.toggle('overlay')
+        todoInput.value = ''
+        inspectTodos()
+    }
 }
 
 function storeTodoInLocalStorage(todo) {
@@ -114,6 +116,7 @@ function removeTodoFromLocalStorage(todoItem) {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// Got issues :/
 function clearTodos() {
     if (confirm('Are you sure?')) {
         while (todosTab.firstChild) {

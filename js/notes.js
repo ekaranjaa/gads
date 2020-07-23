@@ -57,9 +57,8 @@ function addNote(e) {
 
     if (noteTitle.value === '' && noteBody.value === '') {
         alert('Add a note')
-    }
-
-    const noteContainer = `
+    } else {
+        const noteContainer = `
             <div class="note">
                 <div class="title">
                     <h3>${noteTitle.value}</h3>
@@ -74,11 +73,14 @@ function addNote(e) {
             </div>
         `
 
-    notesTab.innerHTML += noteContainer
-    storeNoteInLocalStorage({ 'title': noteTitle.value, 'body': noteBody.value })
-    inspectNotes()
-    noteTitle.value = ''
-    noteBody.value = ''
+        notesTab.innerHTML += noteContainer
+        storeNoteInLocalStorage({ 'title': noteTitle.value, 'body': noteBody.value })
+        notesForm.classList.toggle('active')
+        document.querySelector('.content').classList.toggle('overlay')
+        noteTitle.value = ''
+        noteBody.value = ''
+        inspectNotes()
+    }
 }
 
 function storeNoteInLocalStorage(note) {

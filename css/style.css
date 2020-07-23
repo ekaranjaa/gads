@@ -409,6 +409,12 @@ div[class^="card"] .chart::before {
   transition: 0.2s ease;
 }
 
+@media (prefers-color-scheme: dark) {
+  .theme-control {
+    display: none;
+  }
+}
+
 .content .tab-content {
   padding: 10px;
   height: 100%;
@@ -421,9 +427,11 @@ div[class^="card"] .chart::before {
 }
 
 .content .tab-content .emptyContent {
+  padding: 10px;
   text-align: center;
   font-size: 1.5rem;
   grid-column: 1 / span all;
+  border-radius: 10px;
   display: none;
 }
 

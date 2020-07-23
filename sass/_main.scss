@@ -325,6 +325,12 @@ div[class^="card"] {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .theme-control {
+    display: none;
+  }
+}
+
 .content .tab-content {
   padding: 10px;
   height: 100%;
@@ -336,9 +342,11 @@ div[class^="card"] {
   }
 
   .emptyContent {
+    padding: 10px;
     text-align: center;
     font-size: 1.5rem;
     grid-column: 1 / span all;
+    border-radius: 10px;
     display: none;
 
     .fas {
