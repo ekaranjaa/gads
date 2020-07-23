@@ -65,7 +65,6 @@ html[class="dark-theme"] {
 }
 
 body {
-  padding: 20px;
   background: var(--wallpaper);
   background-attachment: fixed;
   background-position: center;
@@ -662,6 +661,9 @@ div[class^="card"] .chart::before {
 }
 
 @media screen and (min-width: 1024px) {
+  .body {
+    padding: 20px;
+  }
   .container {
     border-radius: 10px;
     overflow: hidden;
