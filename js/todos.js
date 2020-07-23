@@ -18,10 +18,8 @@ function inspectTodos() {
 
     if (todos.length > 0) {
         todosTab.classList.remove('empty')
-        clearBtn.style.display = 'block'
     } else {
         todosTab.classList.add('empty')
-        clearBtn.style.display = 'none'
     }
 }
 

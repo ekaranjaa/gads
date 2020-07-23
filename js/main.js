@@ -126,15 +126,11 @@ function persistTab(tabId) {
     }
 })()
 
-function toggleForm(formId) {
+function openForm(formId) {
     const form = document.getElementById(formId)
     form.classList.toggle('active')
-
-    if (form.firstElementChild.classList.contains('input')) {
-        form.firstElementChild.focus()
-    }
-
-    document.querySelector('.content').classList.toggle('overlay')
+    form.firstElementChild.focus()
+    document.querySelector('.content').classList.add('overlay')
 }
 
 function closeForm(formId) {
@@ -144,6 +140,16 @@ function closeForm(formId) {
 
 (() => {
     const forms = document.querySelectorAll("form")
+
+    window.onmouseup = (e) => {
+        if (e.target.closest('form.active')) return
+        forms.forEach(form => {
+            if (form.classList.contains('active')) {
+                form.classList.remove('active')
+                document.querySelector('.content').classList.remove('overlay')
+            }
+        })
+    }
 
     document.body.onkeydown = (e) => {
         if (e.key === 'Escape') {

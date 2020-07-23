@@ -65,6 +65,7 @@ html[class="dark-theme"] {
 }
 
 body {
+  padding: 20px;
   background: var(--wallpaper);
   background-attachment: fixed;
   background-position: center;
@@ -413,6 +414,9 @@ div[class^="card"] .chart::before {
   .theme-control {
     display: none;
   }
+  .countdown {
+    margin-right: 10px;
+  }
 }
 
 .content .tab-content {
@@ -447,6 +451,11 @@ div[class^="card"] .chart::before {
   border-radius: 50%;
 }
 
+.content .tab-content .notes,
+.content .tab-content .todos {
+  min-height: 300px;
+}
+
 .content .tab-content .notes.empty,
 .content .tab-content .todos.empty {
   height: 100%;
@@ -460,8 +469,9 @@ div[class^="card"] .chart::before {
   display: block;
 }
 
-.content .tab-content .clear-todos {
-  margin-top: 10px;
+.content .tab-content .notes.empty .clear-todos,
+.content .tab-content .todos.empty .clear-todos {
+  display: none;
 }
 
 .course {
@@ -576,6 +586,10 @@ div[class^="card"] .chart::before {
 
 .todos .todo .task-controls {
   display: none;
+}
+
+.todos .clear-todos {
+  margin-bottom: 10px;
 }
 
 @media screen and (min-width: 768px) {

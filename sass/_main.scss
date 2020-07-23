@@ -7,6 +7,7 @@
 }
 
 body {
+  padding: 20px;
   background: var(--wallpaper);
   background-attachment: fixed;
   background-position: center;
@@ -329,6 +330,10 @@ div[class^="card"] {
   .theme-control {
     display: none;
   }
+
+  .countdown {
+    margin-right: 10px;
+  }
 }
 
 .content .tab-content {
@@ -363,6 +368,8 @@ div[class^="card"] {
 
   .notes,
   .todos {
+    min-height: 300px;
+
     &.empty {
       height: 100%;
       display: grid;
@@ -371,11 +378,11 @@ div[class^="card"] {
       .emptyContent {
         display: block;
       }
-    }
-  }
 
-  .clear-todos {
-    margin-top: 10px;
+      .clear-todos {
+        display: none;
+      }
+    }
   }
 }
 
@@ -459,24 +466,30 @@ div[class^="card"] {
   }
 }
 
-.todos .todo {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.todos {
+  .todo {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  &:nth-child(odd) {
-    background: rgba(0, 0, 0, 0.1);
+    &:nth-child(odd) {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &:hover .task-controls,
+    &:active .task-controls,
+    &:focus .task-controls {
+      display: block;
+    }
+
+    .task-controls {
+      display: none;
+    }
   }
 
-  &:hover .task-controls,
-  &:active .task-controls,
-  &:focus .task-controls {
-    display: block;
-  }
-
-  .task-controls {
-    display: none;
+  .clear-todos {
+    margin-bottom: 10px;
   }
 }
 

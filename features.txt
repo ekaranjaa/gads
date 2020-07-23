@@ -1,5 +1,4 @@
 - Edit
-- Close form on click outside
 - Support adding multiple todos
 - Display message once the todos are cleared
 - Mimic an api using spinner
