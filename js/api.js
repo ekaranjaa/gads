@@ -26,7 +26,7 @@ const courses = [
         'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
     },
     {
-        'name': 'Introduction to CSS for Designers',
+        'name': 'Introduction end CSS for Designers',
         'progress': 100,
         'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
     },
@@ -91,7 +91,6 @@ for (let i = 0; i < skills.length; i++) {
 }
 
 function displayCourses() {
-    console.log(courses.length)
     if (courses.length > 0) {
         coursesTab.classList.remove('empty')
 
@@ -99,21 +98,28 @@ function displayCourses() {
             const course = courses[i];
 
             const card = `
-            <div class="course">
-                <div class="course-name">
-                    <a href="${course.link}" target="_blank">${course.name}</a>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar">
-                        <div class="bar" style="width: ${course.progress}%"></div>,
+                <div class="course">
+                    <div class="course-name">
+                        <a href="${course.link}" target="_blank">${course.name}</a>
                     </div>
-                    <span>${course.progress}%</span>
+                    <div class="progress">
+                        <div class="progress-bar">
+                            <div class="bar" style="width: ${course.progress}%"></div>,
+                        </div>
+                        <span>${course.progress}%</span>
+                    </div>
                 </div>
-            </div>
-        `
+            `
 
             coursesTab.innerHTML += card
         }
+    } else {
+        coursesTab.innerHTML = `
+            <div class="emptyContent">
+                <i class="fas fa-book-open"></i>
+                <p>You have not started any courses yet</p>
+            </div>
+        `
     }
 }
 
@@ -128,10 +134,9 @@ function calculatePercentageScore(score) {
 document.addEventListener('DOMContentLoaded', () => {
     incrementAnalytics(0, overallProgress.progress)
 
-    for (let i = 0; i < skills.length; i++) {
-        const skill = skills[i];
-        incrementSkills(0, skill.marks)
-    }
+    skills.forEach((skill, index) => {
+        incrementSkills(0, { 'index': index, 'marks': skill.marks })
+    })
 
     window.setTimeout(() => {
         document.querySelector('.spinner').style.display = 'none'
@@ -139,28 +144,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000)
 })
 
-function incrementAnalytics(from, to) {
+function incrementAnalytics(start, end) {
     setTimeout(() => {
-        from++
-        if (from <= to) {
-            document.querySelector(".card .head .chart").style.background = `conic-gradient(${primaryColor} 0% ${from}%, rgba(0, 0, 0, 0) ${from}% 100%)`
-            document.querySelector(".card .head .chart").setAttribute('data-progress', `${from}%`)
-            incrementAnalytics(from, to)
+        start++
+        if (start <= end) {
+            document.querySelector(".card .head .chart").style.background = `conic-gradient(${primaryColor} 0% ${start}%, rgba(0, 0, 0, 0) ${start}% 100%)`
+            document.querySelector(".card .head .chart").setAttribute('data-progress', `${start}%`)
+            incrementAnalytics(start, end)
         }
     }, 10)
 }
 
-function incrementSkills(from, to) {
+function incrementSkills(start, end) {
     setTimeout(() => {
-        from++
-        if (from <= to) {
-            const charts = document.querySelectorAll(".card-mini .head .chart")
+        start++
+        if (start <= end.marks) {
+            const chart = document.querySelectorAll(".card-mini .head .chart")[end.index]
 
-            charts.forEach(chart => {
-                chart.style.background = `conic-gradient(${primaryColor} 0% ${from}%, rgba(0, 0, 0, 0) ${from}% 100%)`
-                chart.setAttribute('data-progress', `${from}%`)
-            })
-            incrementSkills(from, to)
+            chart.style.background = `conic-gradient(${primaryColor} 0% ${start}%, rgba(0, 0, 0, 0) ${start}% 100%)`
+            chart.setAttribute('data-progress', `${start}%`)
+            incrementSkills(start, end)
         }
     }, 10)
 }

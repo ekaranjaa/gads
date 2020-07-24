@@ -77,7 +77,6 @@ function openTab(e, tabId) {
 
         if (tabAction.getAttribute('data-action') === tabId) {
             tabAction.classList.add('active')
-            break
         } else {
             tabAction.classList.remove('active')
         }
@@ -110,7 +109,6 @@ function persistTab(tabId) {
 
         if (tab.id === activeTab) {
             tab.classList.add('active')
-            break
         }
     }
 
@@ -119,7 +117,6 @@ function persistTab(tabId) {
 
         if (tabLink.getAttribute('name') === activeTab) {
             tabLink.classList.add('active')
-            break
         }
     }
 
@@ -128,7 +125,6 @@ function persistTab(tabId) {
 
         if (tabAction.getAttribute('data-action') === activeTab) {
             tabAction.classList.add('active')
-            break
         } else {
             tabAction.classList.remove('active')
         }
