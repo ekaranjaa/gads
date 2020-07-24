@@ -53,8 +53,7 @@ const courses = [
 ]
 
 const analyticsContainer = document.getElementById('analytics')
-const coursesTab = document.getElementById('courses')
-
+const coursesTab = document.querySelector('.courses')
 const primaryColor = getComputedStyle(document.body).getPropertyValue('--primary')
 
 const analytics = `
@@ -63,7 +62,7 @@ const analytics = `
             <a href="${overallProgress.link}" target="_blank">
                 <i class="icon fas fa-external-link-alt"></i>
             </a>
-            <div class="chart" data-progress="${overallProgress.progress}%" style="background: conic-gradient(${primaryColor} 0% ${overallProgress.progress}%, rgba(0, 0, 0, 0) ${overallProgress.progress}% 100%)"></div>
+            <div class="chart" data-progress="${overallProgress.progress}" style="background: conic-gradient(${primaryColor} 0% ${overallProgress.progress}%, rgba(0, 0, 0, 0) ${overallProgress.progress}% 100%)"></div>
         </div>
         <div class="body">
             <h1>Completed</h1>
@@ -91,24 +90,31 @@ for (let i = 0; i < skills.length; i++) {
     analyticsContainer.innerHTML += card
 }
 
-for (let i = 0; i < courses.length; i++) {
-    const course = courses[i];
+function displayCourses() {
+    console.log(courses.length)
+    if (courses.length > 0) {
+        coursesTab.classList.remove('empty')
 
-    const card = `
-        <div class="course">
-            <div class="course-name">
-                <a href="${course.link}" target="_blank">${course.name}</a>
-            </div>
-            <div class="progress">
-                <div class="progress-bar">
-                    <div class="bar" style="width: ${course.progress}%"></div>
+        for (let i = 0; i < courses.length; i++) {
+            const course = courses[i];
+
+            const card = `
+            <div class="course">
+                <div class="course-name">
+                    <a href="${course.link}" target="_blank">${course.name}</a>
                 </div>
-                <span>${course.progress}%</span>
+                <div class="progress">
+                    <div class="progress-bar">
+                        <div class="bar" style="width: ${course.progress}%"></div>,
+                    </div>
+                    <span>${course.progress}%</span>
+                </div>
             </div>
-        </div>
-    `
+        `
 
-    coursesTab.innerHTML += card
+            coursesTab.innerHTML += card
+        }
+    }
 }
 
 function calculatePercentageScore(score) {
@@ -117,4 +123,44 @@ function calculatePercentageScore(score) {
     const percentageScore = (userScore * 100) / maxScore
 
     return Math.round(percentageScore)
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    incrementAnalytics(0, overallProgress.progress)
+
+    for (let i = 0; i < skills.length; i++) {
+        const skill = skills[i];
+        incrementSkills(0, skill.marks)
+    }
+
+    window.setTimeout(() => {
+        document.querySelector('.spinner').style.display = 'none'
+        displayCourses()
+    }, 3000)
+})
+
+function incrementAnalytics(from, to) {
+    setTimeout(() => {
+        from++
+        if (from <= to) {
+            document.querySelector(".card .head .chart").style.background = `conic-gradient(${primaryColor} 0% ${from}%, rgba(0, 0, 0, 0) ${from}% 100%)`
+            document.querySelector(".card .head .chart").setAttribute('data-progress', `${from}%`)
+            incrementAnalytics(from, to)
+        }
+    }, 10)
+}
+
+function incrementSkills(from, to) {
+    setTimeout(() => {
+        from++
+        if (from <= to) {
+            const charts = document.querySelectorAll(".card-mini .head .chart")
+
+            charts.forEach(chart => {
+                chart.style.background = `conic-gradient(${primaryColor} 0% ${from}%, rgba(0, 0, 0, 0) ${from}% 100%)`
+                chart.setAttribute('data-progress', `${from}%`)
+            })
+            incrementSkills(from, to)
+        }
+    }, 10)
 }

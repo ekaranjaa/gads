@@ -133,6 +133,7 @@ div[class^="card"] {
     color: var(--primary);
     position: relative;
     border-radius: 50%;
+    transition: 0.2s linear;
 
     &::before {
       content: attr(data-progress);
@@ -281,7 +282,7 @@ div[class^="card"] {
     font-size: 0.8rem;
     font-weight: bold;
     color: #fff;
-    background: red;
+    transition: 0.1s linear;
   }
 }
 
@@ -335,14 +336,25 @@ div[class^="card"] {
   }
 }
 
-.content .tab-content {
-  padding: 10px;
-  height: 100%;
-  position: relative;
-  display: none;
+.content {
+  .tab-content {
+    padding: 10px;
+    height: 100%;
+    position: relative;
+    display: none;
 
-  &.active {
-    display: block;
+    &.active {
+      display: block;
+    }
+  }
+
+  .spinner {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: solid 6px rgba(0, 0, 0, 0.3);
+    border-top-color: var(--primary);
+    animation: spin 0.5s linear infinite;
   }
 
   .emptyContent {
@@ -365,6 +377,7 @@ div[class^="card"] {
     }
   }
 
+  .courses,
   .notes,
   .todos {
     min-height: 300px;
@@ -566,11 +579,8 @@ div[class^="card"] {
 }
 
 @media screen and (min-width: $lg) {
-  .body {
-    padding: 20px;
-  }
-
   .container {
+    margin: 20px;
     border-radius: 10px;
     overflow: hidden;
   }

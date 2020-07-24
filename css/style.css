@@ -54,6 +54,28 @@ html[class="dark-theme"] {
   }
 }
 
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -203,6 +225,8 @@ div[class^="card"] .chart {
   color: var(--primary);
   position: relative;
   border-radius: 50%;
+  -webkit-transition: 0.2s linear;
+  transition: 0.2s linear;
 }
 
 div[class^="card"] .chart::before {
@@ -366,7 +390,8 @@ div[class^="card"] .chart::before {
   font-size: 0.8rem;
   font-weight: bold;
   color: #fff;
-  background: red;
+  -webkit-transition: 0.1s linear;
+  transition: 0.1s linear;
 }
 
 .theme-control {
@@ -429,7 +454,17 @@ div[class^="card"] .chart::before {
   display: block;
 }
 
-.content .tab-content .emptyContent {
+.content .spinner {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: solid 6px rgba(0, 0, 0, 0.3);
+  border-top-color: var(--primary);
+  -webkit-animation: spin 0.5s linear infinite;
+          animation: spin 0.5s linear infinite;
+}
+
+.content .emptyContent {
   padding: 10px;
   text-align: center;
   font-size: 1.5rem;
@@ -438,7 +473,7 @@ div[class^="card"] .chart::before {
   display: none;
 }
 
-.content .tab-content .emptyContent .fas {
+.content .emptyContent .fas {
   margin: auto;
   margin-bottom: 10px;
   display: -ms-grid;
@@ -450,26 +485,30 @@ div[class^="card"] .chart::before {
   border-radius: 50%;
 }
 
-.content .tab-content .notes,
-.content .tab-content .todos {
+.content .courses,
+.content .notes,
+.content .todos {
   min-height: 300px;
 }
 
-.content .tab-content .notes.empty,
-.content .tab-content .todos.empty {
+.content .courses.empty,
+.content .notes.empty,
+.content .todos.empty {
   height: 100%;
   display: -ms-grid;
   display: grid;
   place-items: center;
 }
 
-.content .tab-content .notes.empty .emptyContent,
-.content .tab-content .todos.empty .emptyContent {
+.content .courses.empty .emptyContent,
+.content .notes.empty .emptyContent,
+.content .todos.empty .emptyContent {
   display: block;
 }
 
-.content .tab-content .notes.empty .clear-todos,
-.content .tab-content .todos.empty .clear-todos {
+.content .courses.empty .clear-todos,
+.content .notes.empty .clear-todos,
+.content .todos.empty .clear-todos {
   display: none;
 }
 
@@ -661,10 +700,8 @@ div[class^="card"] .chart::before {
 }
 
 @media screen and (min-width: 1024px) {
-  .body {
-    padding: 20px;
-  }
   .container {
+    margin: 20px;
     border-radius: 10px;
     overflow: hidden;
   }

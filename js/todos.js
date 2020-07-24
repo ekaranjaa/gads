@@ -5,7 +5,7 @@ const clearBtn = document.querySelector('.clear-todos')
 
 todosForm.onsubmit = addTodo
 todosTab.onclick = removeTodo
-clearBtn.onclick = clearTodos
+// clearBtn.onclick = clearTodos
 document.addEventListener('DOMContentLoaded', getTodos)
 
 function inspectTodos() {

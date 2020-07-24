@@ -22,9 +22,10 @@ function rememberTheme(theme) {
     localStorage.setItem('theme', theme)
 }
 
-// Initiate countdown
+// Initiate time countdown
 (() => {
-    const countDownDate = new Date("Jul 22, 2020 00:00:00").getTime()
+    const countDown = document.querySelector(".countdown")
+    const countDownDate = new Date("Aug 3, 2020 00:00:00").getTime()
 
     const x = setInterval(() => {
         const now = new Date().getTime()
@@ -35,11 +36,15 @@ function rememberTheme(theme) {
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
         const seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
-        document.querySelector(".countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`
+        if (days <= 1) countDown.style.background = 'red'
+        if (days > 1 && days < 5) countDown.style.background = 'orange'
+        if (days >= 5) countDown.style.background = 'green'
+
+        countDown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`
 
         if (distance < 0) {
             clearInterval(x)
-            document.querySelector(".countdown").innerHTML = "TIME UP"
+            document.querySelector(".countdown").innerHTML = "Phase I Complete"
         }
     }, 1000)
 })()
@@ -72,6 +77,7 @@ function openTab(e, tabId) {
 
         if (tabAction.getAttribute('data-action') === tabId) {
             tabAction.classList.add('active')
+            break
         } else {
             tabAction.classList.remove('active')
         }
@@ -104,6 +110,7 @@ function persistTab(tabId) {
 
         if (tab.id === activeTab) {
             tab.classList.add('active')
+            break
         }
     }
 
@@ -112,6 +119,7 @@ function persistTab(tabId) {
 
         if (tabLink.getAttribute('name') === activeTab) {
             tabLink.classList.add('active')
+            break
         }
     }
 
@@ -120,6 +128,7 @@ function persistTab(tabId) {
 
         if (tabAction.getAttribute('data-action') === activeTab) {
             tabAction.classList.add('active')
+            break
         } else {
             tabAction.classList.remove('active')
         }
@@ -139,8 +148,8 @@ function closeForm(formId) {
 }
 
 (() => {
+    // Close the opened form when the user clicks outside the form
     const forms = document.querySelectorAll("form")
-
     window.onmouseup = (e) => {
         if (e.target.closest('form.active')) return
         forms.forEach(form => {
@@ -151,6 +160,7 @@ function closeForm(formId) {
         })
     }
 
+    // Close the opened form when the user presses `Esc`
     document.body.onkeydown = (e) => {
         if (e.key === 'Escape') {
             forms.forEach(form => {
