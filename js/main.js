@@ -25,7 +25,7 @@ function rememberTheme(theme) {
 // Initiate time countdown
 (() => {
     const countDown = document.querySelector(".countdown")
-    const countDownDate = new Date("Aug 3, 2020 00:00:00").getTime()
+    const countDownDate = new Date("Jul 27, 2020 00:00:00").getTime()
 
     const x = setInterval(() => {
         const now = new Date().getTime()
