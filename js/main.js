@@ -44,7 +44,7 @@ function rememberTheme(theme) {
 
         if (distance < 0) {
             clearInterval(x)
-            document.querySelector(".countdown").innerHTML = "Phase I Complete"
+            document.querySelector(".countdown").innerHTML = "Phase 1 Complete"
         }
     }, 1000)
 })()

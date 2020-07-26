@@ -209,15 +209,21 @@ div[class^="card"] {
   overflow: hidden;
 }
 
+div[class^="card"]:hover .icon,
+div[class^="card"]:focus .icon {
+  display: block;
+}
+
 div[class^="card"] .icon {
-  padding: 10px;
+  padding: 8px;
   position: absolute;
   top: 0;
   right: 0;
   color: var(--card-text-color);
+  display: none;
 }
 
-div[class^="card"] .icon:hover, div[class^="card"] .icon:active, div[class^="card"] .icon:focus {
+div[class^="card"] .icon:hover, div[class^="card"] .icon:focus {
   background: var(--bg);
 }
 
@@ -350,7 +356,7 @@ div[class^="card"] .chart::before {
   cursor: pointer;
 }
 
-.navbar .nav-link:hover:not(.active), .navbar .nav-link:active:not(.active), .navbar .nav-link:focus:not(.active) {
+.navbar .nav-link:hover:not(.active), .navbar .nav-link:focus:not(.active) {
   background: rgba(0, 0, 0, 0.1);
 }
 
@@ -386,7 +392,7 @@ div[class^="card"] .chart::before {
 
 .navbar .countdown {
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: 0.8rem;
   font-weight: bold;
   color: #fff;
@@ -485,13 +491,13 @@ div[class^="card"] .chart::before {
   border-radius: 50%;
 }
 
-.content .courses,
+.content .projects,
 .content .notes,
 .content .todos {
   min-height: 300px;
 }
 
-.content .courses.empty,
+.content .projects.empty,
 .content .notes.empty,
 .content .todos.empty {
   height: 100%;
@@ -500,37 +506,37 @@ div[class^="card"] .chart::before {
   place-items: center;
 }
 
-.content .courses.empty .emptyContent,
+.content .projects.empty .emptyContent,
 .content .notes.empty .emptyContent,
 .content .todos.empty .emptyContent {
   display: block;
 }
 
-.content .courses.empty .clear-todos,
+.content .projects.empty .clear-todos,
 .content .notes.empty .clear-todos,
 .content .todos.empty .clear-todos {
   display: none;
 }
 
-.course {
+.project {
   margin: 20px 0;
 }
 
-.course-name {
+.project-name {
   margin-bottom: 10px;
   font-size: 1.3rem;
 }
 
-.course a {
+.project a {
   text-decoration: none;
   color: var(--global-text-color);
 }
 
-.course a:hover, .course a:active, .course a:focus {
+.project a:hover, .project a:focus {
   text-decoration: underline;
 }
 
-.course .progress {
+.project .progress {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -539,12 +545,12 @@ div[class^="card"] .chart::before {
           align-items: center;
 }
 
-.course span {
+.project span {
   margin: 0 10px;
   font-size: 0.8rem;
 }
 
-.course .progress-bar {
+.project .progress-bar {
   height: 6px;
   width: 100%;
   border-radius: 25px;
@@ -553,7 +559,7 @@ div[class^="card"] .chart::before {
   overflow: hidden;
 }
 
-.course .progress-bar .bar {
+.project .progress-bar .bar {
   height: 100%;
   text-align: center;
   background: var(--primary);
@@ -573,7 +579,6 @@ div[class^="card"] .chart::before {
 }
 
 .notes .note:hover .task-controls,
-.notes .note:active .task-controls,
 .notes .note:focus .task-controls {
   display: block;
 }
@@ -617,7 +622,6 @@ div[class^="card"] .chart::before {
 }
 
 .todos .todo:hover .task-controls,
-.todos .todo:active .task-controls,
 .todos .todo:focus .task-controls {
   display: block;
 }

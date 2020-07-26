@@ -19,48 +19,17 @@ const skills = [
         'link': 'https://app.pluralsight.com/score/skill-assessment/javascript/summary?context=profile'
     }
 ]
-const courses = [
-    {
-        'name': 'HTML Fundamentals',
-        'progress': 100,
-        'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
-    },
-    {
-        'name': 'Introduction end CSS for Designers',
-        'progress': 100,
-        'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
-    },
-    {
-        'name': 'JavaScript Getting Started',
-        'progress': 100,
-        'link': 'https://app.pluralsight.com/library/courses/cf24be02-4875-4adb-a0dd-497e0235f47f'
-    },
-    {
-        'name': 'Mobile First Responsive Design',
-        'progress': 100,
-        'link': 'https://app.pluralsight.com/library/courses/9358b960-8da3-4f12-a926-e166832d34a3'
-    },
-    {
-        'name': 'Making a Web Form Accessible',
-        'progress': 100,
-        'link': 'https://app.pluralsight.com/library/courses/4dd99913-5d17-4c6b-9b14-99785e7861c8'
-    },
-    {
-        'name': 'Git: The Big Picture',
-        'progress': 100,
-        'link': 'https://app.pluralsight.com/library/courses/git-big-picture/table-of-contents'
-    }
-]
+const projects = []
 
 const analyticsContainer = document.getElementById('analytics')
-const coursesTab = document.querySelector('.courses')
+const projectsTab = document.querySelector('.projects')
 const primaryColor = getComputedStyle(document.body).getPropertyValue('--primary')
 
 const analytics = `
     <div class="card">
         <div class="head">
-            <a href="${overallProgress.link}" target="_blank">
-                <i class="icon fas fa-external-link-alt"></i>
+            <a href="${overallProgress.link}" class="icon" target="_blank">
+                <i class="fas fa-external-link-alt"></i>
             </a>
             <div class="chart" data-progress="${overallProgress.progress}" style="background: conic-gradient(${primaryColor} 0% ${overallProgress.progress}%, rgba(0, 0, 0, 0) ${overallProgress.progress}% 100%)"></div>
         </div>
@@ -77,8 +46,8 @@ for (let i = 0; i < skills.length; i++) {
     const card = `
         <div class="card-mini">
             <div class="head">
-                <a href="${skill.link}" target="_blank">
-                    <i class="icon fas fa-external-link-alt"></i>
+                <a href="${skill.link}" class="icon" target="_blank">
+                    <i class="fas fa-external-link-alt"></i>
                 </a>
                 <div class="chart" data-progress="${skill.marks}%"  style="background: conic-gradient(${primaryColor} 0% ${skill.marks}%, rgba(0, 0, 0, 0) ${skill.marks}% 100%)"></div>
             </div>
@@ -90,34 +59,34 @@ for (let i = 0; i < skills.length; i++) {
     analyticsContainer.innerHTML += card
 }
 
-function displayCourses() {
-    if (courses.length > 0) {
-        coursesTab.classList.remove('empty')
+function displayProjects() {
+    if (projects.length > 0) {
+        projectsTab.classList.remove('empty')
 
-        for (let i = 0; i < courses.length; i++) {
-            const course = courses[i];
+        for (let i = 0; i < projects.length; i++) {
+            const project = projects[i];
 
             const card = `
-                <div class="course">
-                    <div class="course-name">
-                        <a href="${course.link}" target="_blank">${course.name}</a>
+                <div class="project">
+                    <div class="project-name">
+                        <a href="${project.link}" target="_blank">${project.name}</a>
                     </div>
                     <div class="progress">
                         <div class="progress-bar">
-                            <div class="bar" style="width: ${course.progress}%"></div>,
+                            <div class="bar" style="width: ${project.progress}%"></div>
                         </div>
-                        <span>${course.progress}%</span>
+                        <span>${project.progress}%</span>
                     </div>
                 </div>
             `
 
-            coursesTab.innerHTML += card
+            projectsTab.innerHTML += card
         }
     } else {
-        coursesTab.innerHTML = `
+        projectsTab.innerHTML = `
             <div class="emptyContent">
-                <i class="fas fa-book-open"></i>
-                <p>You have not started any courses yet</p>
+                <i class="fas fa-project-diagram"></i>
+                <p>COMING SOON</p>
             </div>
         `
     }
@@ -140,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.setTimeout(() => {
         document.querySelector('.spinner').style.display = 'none'
-        displayCourses()
+        displayProjects()
     }, 3000)
 })
 

@@ -18,16 +18,16 @@
         <div class="context">
             <nav class="navbar">
                 <div class="nav-controls">
-                    <button name="courses" class="nav-link" onclick="openTab(event, 'courses')">
-                        <i class="fas fa-book-reader"></i>
-                        <span>Courses</span>
+                    <button name="projects" class="nav-link" onclick="openTab(event, 'projects')">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
                     </button>
                     <button name="notes" class="nav-link" onclick="openTab(event, 'notes')">
-                        <i class="fas fa-book"></i>
+                        <i class="fas fa-sticky-note"></i>
                         <span>Notes</span>
                     </button>
                     <button name="todos" class="nav-link" onclick="openTab(event, 'todos')">
-                        <i class="fas fa-clipboard-list"></i>
+                        <i class="fas fa-tasks"></i>
                         <span>Todos</span>
                     </button>
                 </div>
@@ -44,8 +44,8 @@
                 </div>
             </nav>
             <div class="content">
-                <div id="courses" class="tab-content">
-                    <div class="courses empty">
+                <div id="projects" class="tab-content">
+                    <div class="projects empty">
                         <div class="emptyContent">
                             <div class="spinner"></div>
                         </div>
@@ -62,7 +62,7 @@
                     </form>
                     <div class="notes empty">
                         <div class="emptyContent">
-                            <i class="fas fa-book"></i>
+                            <i class="fas fa-sticky-note"></i>
                             <p>You have no notes yet</p>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                     </form>
                     <div class="todos empty">
                         <div class="emptyContent">
-                            <i class="fas fa-clipboard-list"></i>
+                            <i class="fas fa-tasks"></i>
                             <p>You have no todos yet</p>
                         </div>
                         <!-- <button class="btn clear-todos">Clear todos</button> -->

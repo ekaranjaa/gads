@@ -115,15 +115,20 @@ div[class^="card"] {
   border: solid 1px var(--border-color);
   overflow: hidden;
 
+  &:hover .icon,
+  &:focus .icon {
+    display: block;
+  }
+
   .icon {
-    padding: 10px;
+    padding: 8px;
     position: absolute;
     top: 0;
     right: 0;
     color: var(--card-text-color);
+    display: none;
 
     &:hover,
-    &:active,
     &:focus {
       background: var(--bg);
     }
@@ -245,7 +250,6 @@ div[class^="card"] {
       cursor: pointer;
 
       &:hover:not(.active),
-      &:active:not(.active),
       &:focus:not(.active) {
         background: rgba(0, 0, 0, 0.1);
       }
@@ -278,7 +282,7 @@ div[class^="card"] {
 
   .countdown {
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 3px;
     font-size: 0.8rem;
     font-weight: bold;
     color: #fff;
@@ -377,7 +381,7 @@ div[class^="card"] {
     }
   }
 
-  .courses,
+  .projects,
   .notes,
   .todos {
     min-height: 300px;
@@ -398,7 +402,7 @@ div[class^="card"] {
   }
 }
 
-.course {
+.project {
   margin: 20px 0;
 
   &-name {
@@ -411,7 +415,6 @@ div[class^="card"] {
     color: var(--global-text-color);
 
     &:hover,
-    &:active,
     &:focus {
       text-decoration: underline;
     }
@@ -456,7 +459,6 @@ div[class^="card"] {
     overflow: hidden;
 
     &:hover .task-controls,
-    &:active .task-controls,
     &:focus .task-controls {
       display: block;
     }
@@ -490,7 +492,6 @@ div[class^="card"] {
     }
 
     &:hover .task-controls,
-    &:active .task-controls,
     &:focus .task-controls {
       display: block;
     }
