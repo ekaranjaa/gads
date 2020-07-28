@@ -5,7 +5,6 @@ const noteBody = document.querySelector('.input.note-body')
 
 notesForm.onsubmit = addNote
 notesTab.onclick = removeNote
-document.addEventListener('DOMContentLoaded', getNotes)
 
 function inspectNotes() {
     let notes
@@ -19,21 +18,28 @@ function inspectNotes() {
         notesTab.classList.remove('empty')
     } else {
         notesTab.classList.add('empty')
+        notesTab.innerHTML = `
+            <div class="emptyContent">
+                <i class="fas fa-sticky-note"></i>
+                <p>You have no notes yet</p>
+            </div>
+        `
     }
 }
 
-function getNotes() {
-    let notes
-    if (localStorage.getItem('notes') === null) {
-        notes = []
-    } else {
-        notes = JSON.parse(localStorage.getItem('notes'))
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        let notes
+        if (localStorage.getItem('notes') === null) {
+            notes = []
+        } else {
+            notes = JSON.parse(localStorage.getItem('notes'))
+        }
 
-    inspectNotes()
+        inspectNotes()
 
-    notes.forEach(note => {
-        const noteContainer = `
+        notes.forEach(note => {
+            const noteContainer = `
                 <div class="note">
                     <div class="title">
                         <h3>${note.title}</h3>
@@ -48,9 +54,10 @@ function getNotes() {
                 </div>
             `
 
-        notesTab.innerHTML += noteContainer
-    })
-}
+            notesTab.innerHTML += noteContainer
+        })
+    }, 3000);
+})
 
 function addNote(e) {
     e.preventDefault()

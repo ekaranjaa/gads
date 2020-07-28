@@ -19,10 +19,7 @@ const skills = [
         'link': 'https://app.pluralsight.com/score/skill-assessment/javascript/summary?context=profile'
     }
 ]
-const projects = []
-
 const analyticsContainer = document.getElementById('analytics')
-const projectsTab = document.querySelector('.projects')
 const primaryColor = getComputedStyle(document.body).getPropertyValue('--primary')
 
 const analytics = `
@@ -59,39 +56,6 @@ for (let i = 0; i < skills.length; i++) {
     analyticsContainer.innerHTML += card
 }
 
-function displayProjects() {
-    if (projects.length > 0) {
-        projectsTab.classList.remove('empty')
-
-        for (let i = 0; i < projects.length; i++) {
-            const project = projects[i];
-
-            const card = `
-                <div class="project">
-                    <div class="project-name">
-                        <a href="${project.link}" target="_blank">${project.name}</a>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar">
-                            <div class="bar" style="width: ${project.progress}%"></div>
-                        </div>
-                        <span>${project.progress}%</span>
-                    </div>
-                </div>
-            `
-
-            projectsTab.innerHTML += card
-        }
-    } else {
-        projectsTab.innerHTML = `
-            <div class="emptyContent">
-                <i class="fas fa-project-diagram"></i>
-                <p>COMING SOON</p>
-            </div>
-        `
-    }
-}
-
 function calculatePercentageScore(score) {
     const maxScore = 300
     const userScore = score
@@ -106,11 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
     skills.forEach((skill, index) => {
         incrementSkills(0, { 'index': index, 'marks': skill.marks })
     })
-
-    window.setTimeout(() => {
-        document.querySelector('.spinner').style.display = 'none'
-        displayProjects()
-    }, 3000)
 })
 
 function incrementAnalytics(start, end) {

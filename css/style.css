@@ -100,6 +100,13 @@ button,
   font-family: "SFReg";
 }
 
+img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .notes-form,
 .todos-form {
   padding: 20px;
@@ -200,7 +207,8 @@ button,
   padding: 10px;
 }
 
-div[class^="card"] {
+.card,
+.card-mini {
   margin: 10px auto;
   position: relative;
   color: var(--card-text-color);
@@ -209,12 +217,15 @@ div[class^="card"] {
   overflow: hidden;
 }
 
-div[class^="card"]:hover .icon,
-div[class^="card"]:focus .icon {
+.card:hover .icon,
+.card:focus .icon,
+.card-mini:hover .icon,
+.card-mini:focus .icon {
   display: block;
 }
 
-div[class^="card"] .icon {
+.card .icon,
+.card-mini .icon {
   padding: 8px;
   position: absolute;
   top: 0;
@@ -223,11 +234,14 @@ div[class^="card"] .icon {
   display: none;
 }
 
-div[class^="card"] .icon:hover, div[class^="card"] .icon:focus {
+.card .icon:hover, .card .icon:focus,
+.card-mini .icon:hover,
+.card-mini .icon:focus {
   background: var(--bg);
 }
 
-div[class^="card"] .chart {
+.card .chart,
+.card-mini .chart {
   color: var(--primary);
   position: relative;
   border-radius: 50%;
@@ -235,7 +249,8 @@ div[class^="card"] .chart {
   transition: 0.2s linear;
 }
 
-div[class^="card"] .chart::before {
+.card .chart::before,
+.card-mini .chart::before {
   content: attr(data-progress);
   font-weight: bold;
   text-align: center;
@@ -464,10 +479,10 @@ div[class^="card"] .chart::before {
   height: 40px;
   width: 40px;
   border-radius: 50%;
-  border: solid 6px rgba(0, 0, 0, 0.3);
+  border: solid 4px rgba(0, 0, 0, 0.3);
   border-top-color: var(--primary);
-  -webkit-animation: spin 0.5s linear infinite;
-          animation: spin 0.5s linear infinite;
+  -webkit-animation: spin 0.8s linear infinite;
+          animation: spin 0.8s linear infinite;
 }
 
 .content .emptyContent {
@@ -518,52 +533,61 @@ div[class^="card"] .chart::before {
   display: none;
 }
 
-.project {
-  margin: 20px 0;
+.projects {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
-.project-name {
-  margin-bottom: 10px;
-  font-size: 1.3rem;
+.project .head {
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.project a {
-  text-decoration: none;
-  color: var(--global-text-color);
+.project .body {
+  padding: 10px;
 }
 
-.project a:hover, .project a:focus {
-  text-decoration: underline;
+.project .name {
+  font-size: 1.4rem;
 }
 
-.project .progress {
+.project .links {
+  margin-top: 20px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.project .links a {
+  padding: 4px 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.project span {
-  margin: 0 10px;
-  font-size: 0.8rem;
-}
-
-.project .progress-bar {
-  height: 6px;
-  width: 100%;
-  border-radius: 25px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: var(--global-text-color);
-  background: rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.project .progress-bar .bar {
-  height: 100%;
-  text-align: center;
-  background: var(--primary);
-  border-radius: 25px;
+.project .links a span {
+  margin: auto;
+}
+
+.project .links a:hover, .project .links a:focus {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .notes {
@@ -572,8 +596,10 @@ div[class^="card"] .chart::before {
 
 .notes .note {
   margin: 20px 0;
-  -webkit-box-shadow: 0 5px 5px var(--shadow-color), 0 10px 0 -2px var(--bg), 0 15px 5px -4px var(--shadow-color), 0 20px 0 -6px var(--bg), 0 25px 5px -8px var(--shadow-color);
-          box-shadow: 0 5px 5px var(--shadow-color), 0 10px 0 -2px var(--bg), 0 15px 5px -4px var(--shadow-color), 0 20px 0 -6px var(--bg), 0 25px 5px -8px var(--shadow-color);
+  border-radius: 10px;
+  border: solid 1px var(--shadow-color);
+  -webkit-box-shadow: 3px 3px 0 var(--shadow-color);
+          box-shadow: 3px 3px 0 var(--shadow-color);
   background: var(--bg);
   overflow: hidden;
 }

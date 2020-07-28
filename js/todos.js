@@ -1,12 +1,9 @@
 const todosForm = document.querySelector('#todosForm')
 const todosTab = document.querySelector('.todos')
 const todoInput = document.querySelector('.input.todo')
-const clearBtn = document.querySelector('.clear-todos')
 
 todosForm.onsubmit = addTodo
 todosTab.onclick = removeTodo
-// clearBtn.onclick = clearTodos
-document.addEventListener('DOMContentLoaded', getTodos)
 
 function inspectTodos() {
     let todos
@@ -20,21 +17,28 @@ function inspectTodos() {
         todosTab.classList.remove('empty')
     } else {
         todosTab.classList.add('empty')
+        todosTab.innerHTML = `
+            <div class="emptyContent">
+                <i class="fas fa-tasks"></i>
+                <p>You have no todos yet</p>
+            </div>
+        `
     }
 }
 
-function getTodos() {
-    let todos
-    if (localStorage.getItem('todos') === null) {
-        todos = []
-    } else {
-        todos = JSON.parse(localStorage.getItem('todos'))
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        let todos
+        if (localStorage.getItem('todos') === null) {
+            todos = []
+        } else {
+            todos = JSON.parse(localStorage.getItem('todos'))
+        }
 
-    inspectTodos()
+        inspectTodos()
 
-    todos.forEach(todo => {
-        const todoContainer = `
+        todos.forEach(todo => {
+            const todoContainer = `
                 <div class="todo">
                     <span>${todo}</span>
                     <div class="task-controls">
@@ -44,9 +48,10 @@ function getTodos() {
                 </div>
             `
 
-        todosTab.innerHTML += todoContainer
-    })
-}
+            todosTab.innerHTML += todoContainer
+        })
+    }, 3000)
+})
 
 function addTodo(e) {
     e.preventDefault()
@@ -112,19 +117,4 @@ function removeTodoFromLocalStorage(todoItem) {
     })
 
     localStorage.setItem('todos', JSON.stringify(todos))
-}
-
-// Got issues :/
-function clearTodos() {
-    if (confirm('Are you sure?')) {
-        while (todosTab.firstChild) {
-            todosTab.removeChild(todosTab.firstChild)
-        }
-        clearTodosFromLocalStorage()
-        inspectTodos()
-    }
-}
-
-function clearTodosFromLocalStorage() {
-    localStorage.clear()
 }
