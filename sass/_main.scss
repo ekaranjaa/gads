@@ -409,13 +409,11 @@ img {
   }
 }
 
-.projects {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
 .project {
+  margin: 20px 0;
+  border-radius: 10px;
+  background: var(--bg);
+
   .head {
     height: 150px;
     border-radius: 10px;
@@ -461,34 +459,35 @@ img {
 
 .notes {
   position: relative;
+}
 
-  .note {
-    margin: 20px 0;
-    border-radius: 10px;
-    border: solid 1px var(--shadow-color);
-    box-shadow: 3px 3px 0 var(--shadow-color);
-    background: var(--bg);
-    overflow: hidden;
+.note {
+  // margin: 10px;
+  margin: 20px 0;
+  border-radius: 10px;
+  border: solid 1px var(--shadow-color);
+  box-shadow: 3px 3px 0 var(--shadow-color);
+  background: var(--bg);
+  overflow: hidden;
 
-    &:hover .task-controls,
-    &:focus .task-controls {
-      display: block;
-    }
+  &:hover .task-controls,
+  &:focus .task-controls {
+    display: block;
+  }
 
-    .title,
-    .text {
-      padding: 10px;
-    }
+  .title,
+  .text {
+    padding: 10px;
+  }
 
-    .title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    .task-controls {
-      display: none;
-    }
+  .task-controls {
+    display: none;
   }
 }
 
@@ -581,13 +580,15 @@ img {
     }
   }
 
+  .projects,
   .notes {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
 
-    .note {
-      margin: 10px;
-    }
+  .project,
+  .note {
+    margin: 10px;
   }
 }
 

@@ -533,12 +533,10 @@ img {
   display: none;
 }
 
-.projects {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+.project {
+  margin: 20px 0;
+  border-radius: 10px;
+  background: var(--bg);
 }
 
 .project .head {
@@ -594,7 +592,7 @@ img {
   position: relative;
 }
 
-.notes .note {
+.note {
   margin: 20px 0;
   border-radius: 10px;
   border: solid 1px var(--shadow-color);
@@ -604,17 +602,17 @@ img {
   overflow: hidden;
 }
 
-.notes .note:hover .task-controls,
-.notes .note:focus .task-controls {
+.note:hover .task-controls,
+.note:focus .task-controls {
   display: block;
 }
 
-.notes .note .title,
-.notes .note .text {
+.note .title,
+.note .text {
   padding: 10px;
 }
 
-.notes .note .title {
+.note .title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -626,7 +624,7 @@ img {
           justify-content: space-between;
 }
 
-.notes .note .task-controls {
+.note .task-controls {
   display: none;
 }
 
@@ -718,13 +716,15 @@ img {
   .navbar .nav-link span {
     display: block;
   }
+  .projects,
   .notes {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (1fr)[2];
         grid-template-columns: repeat(2, 1fr);
   }
-  .notes .note {
+  .project,
+  .note {
     margin: 10px;
   }
 }
