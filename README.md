@@ -2,6 +2,8 @@
 
 A project I created during the learning phase of GADS 2020
 
+![Screenshot](images/screenshot.png)
+
 ## Project setup
 
 Run `npm i` to install all npm packages

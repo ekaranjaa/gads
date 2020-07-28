@@ -1,7 +1,7 @@
 const projects = [
     {
         'name': 'Password generator',
-        'cover_image': 'passgenn.png',
+        'cover_image': 'passgen.png',
         'source': 'https://github.com/ekaranjaa/password-generator',
         'live': 'https://passgenn.netlify.app'
     }
