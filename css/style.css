@@ -536,7 +536,6 @@ img {
 .project {
   margin: 20px 0;
   border-radius: 10px;
-  background: var(--bg);
 }
 
 .project .head {
