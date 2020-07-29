@@ -32,8 +32,8 @@
                     </button>
                 </div>
                 <div class="nav-actions">
-                    <button class="btn" data-action="notes" onclick="openForm('notesForm')">ADD NOTES</button>
-                    <button class="btn" data-action="todos" onclick="openForm('todosForm')">ADD TODO</button>
+                    <button class="btn" data-action="notes" onclick="openForm('addNotes')">ADD NOTES</button>
+                    <button class="btn" data-action="todos" onclick="openForm('addTodos')">ADD TODO</button>
                 </div>
                 <div class="countdown"></div>
                 <div class="theme-control">
@@ -52,12 +52,21 @@
                     </div>
                 </div>
                 <div id="notes" class="tab-content">
-                    <form id="notesForm" class="notes-form" autocomplete="off">
+                    <form id="addNotes" class="notes-form" autocomplete="off">
                         <input type="text" class="input note-title" placeholder="Title">
                         <textarea name="body" class="input note-body" cols="30" rows="5" placeholder="Body"></textarea>
                         <div class="form-controls">
-                            <button type="button" class="btn" onclick="closeForm('notesForm')">Cancel</button>
+                            <button type="button" class="btn" onclick="closeForm('addNotes')">Cancel</button>
                             <button type="submit" class="btn">Save</button>
+                        </div>
+                    </form>
+                    <form id="editNotes" class="notes-form" autocomplete="off">
+                        <input type="number" class="note-index">
+                        <input type="text" class="input note-title" placeholder="Title">
+                        <textarea name="body" class="input note-body" cols="30" rows="5" placeholder="Body"></textarea>
+                        <div class="form-controls">
+                            <button type="button" class="btn" onclick="closeForm('editNotes')">Cancel</button>
+                            <button type="submit" class="btn">Update</button>
                         </div>
                     </form>
                     <div class="notes empty">
@@ -67,11 +76,19 @@
                     </div>
                 </div>
                 <div id="todos" class="tab-content">
-                    <form id="todosForm" class="todos-form" autocomplete="off">
+                    <form id="addTodos" class="todos-form" autocomplete="off">
                         <input type="text" class="input todo" placeholder="Todo">
                         <div class="form-controls">
-                            <button type="button" class="btn" onclick="closeForm('todosForm')">Cancel</button>
+                            <button type="button" class="btn" onclick="closeForm('addTodos')">Cancel</button>
                             <button type="submit" class="btn">Save</button>
+                        </div>
+                    </form>
+                    <form id="editTodos" class="todos-form" autocomplete="off">
+                        <input type="number" class="todo-index" hidden>
+                        <input type="text" class="input todo" placeholder="Todo">
+                        <div class="form-controls">
+                            <button type="button" class="btn" onclick="closeForm('editTodos')">Cancel</button>
+                            <button type="submit" class="btn">Update</button>
                         </div>
                     </form>
                     <div class="todos empty">

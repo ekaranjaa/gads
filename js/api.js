@@ -35,11 +35,10 @@ const analytics = `
         </div>
     </div>
 `
+
 analyticsContainer.innerHTML = analytics
 
-for (let i = 0; i < skills.length; i++) {
-    const skill = skills[i]
-
+skills.forEach(skill => {
     const card = `
         <div class="card-mini">
             <div class="head">
@@ -53,8 +52,9 @@ for (let i = 0; i < skills.length; i++) {
             </div>
         </div>
     `
+
     analyticsContainer.innerHTML += card
-}
+})
 
 function calculatePercentageScore(score) {
     const maxScore = 300

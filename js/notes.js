@@ -1,10 +1,28 @@
-const notesForm = document.querySelector('#notesForm')
-const notesTab = document.querySelector('.notes')
-const noteTitle = document.querySelector('.input.note-title')
-const noteBody = document.querySelector('.input.note-body')
+// New note form
+const addNotesForm = document.querySelector('#addNotes')
+const newNoteTitle = document.querySelector('#addNotes .input.note-title')
+const newNoteBody = document.querySelector('#addNotes .input.note-body')
 
-notesForm.onsubmit = addNote
-notesTab.onclick = removeNote
+// Edit note form
+const editNoteForm = document.querySelector('#editNotes')
+const editNoteIndex = document.querySelector('#editNotes .note-index')
+const editNoteTitle = document.querySelector('#editNotes .input.note-title')
+const editNoteBody = document.querySelector('#editNotes .input.note-body')
+
+// Notes tab
+const notesTab = document.querySelector('.notes')
+
+addNotesForm.onsubmit = addNote
+editNoteForm.onsubmit = updateNote
+notesTab.onclick = (e) => {
+    if (e.target.parentElement.classList.contains('edit')) {
+        editNote(e.target.parentElement.parentElement.parentElement)
+    }
+
+    if (e.target.parentElement.classList.contains('delete')) {
+        removeNote(e.target.parentElement.parentElement.parentElement)
+    }
+}
 
 function inspectNotes() {
     let notes
@@ -56,36 +74,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
             notesTab.innerHTML += noteContainer
         })
-    }, 3000);
+    }, 3000)
 })
 
 function addNote(e) {
     e.preventDefault()
 
-    if (noteTitle.value === '' && noteBody.value === '') {
+    if (newNoteTitle.value === '' || newNoteBody.value === '') {
         alert('Add a note')
     } else {
         const noteContainer = `
             <div class="note">
                 <div class="title">
-                    <h3>${noteTitle.value}</h3>
+                    <h3>${newNoteTitle.value}</h3>
                     <div class="task-controls">
                         <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
                         <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
                     </div>
                 </div>
                 <div class="text">
-                    <p>${noteBody.value}</p>
+                    <p>${newNoteBody.value}</p>
                 </div>
             </div>
         `
 
         notesTab.innerHTML += noteContainer
-        storeNoteInLocalStorage({ 'title': noteTitle.value, 'body': noteBody.value })
-        notesForm.classList.toggle('active')
+        storeNoteInLocalStorage({ 'title': newNoteTitle.value, 'body': newNoteBody.value })
+        addNotesForm.classList.toggle('active')
         document.querySelector('.content').classList.toggle('overlay')
-        noteTitle.value = ''
-        noteBody.value = ''
+        newNoteTitle.value = ''
+        newNoteBody.value = ''
         inspectNotes()
     }
 }
@@ -103,18 +121,77 @@ function storeNoteInLocalStorage(note) {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
 
-function removeNote(e) {
-    if (e.target.parentElement.classList.contains('delete')) {
+function editNote(note) {
+    let notes
+    if (localStorage.getItem('notes') === null) {
+        notes = []
+    } else {
+        notes = JSON.parse(localStorage.getItem('notes'))
+    }
 
-        if (confirm('Are You Sure?')) {
-            e.target.parentElement.parentElement.parentElement.parentElement.remove()
-            removeNoteFromLocalStorage(e.target.parentElement.parentElement.parentElement)
-            inspectNotes()
-        }
+    editNoteForm.classList.toggle('active')
+    document.querySelector('.content').classList.toggle('overlay')
+    editNoteIndex.value = notes.findIndex(x => x.title === note.innerText.trim())
+    editNoteTitle.value = note.innerText.trim()
+    editNoteBody.value = note.nextElementSibling.innerText.trim()
+}
+
+function updateNote(e) {
+    e.preventDefault()
+
+    let notes
+    if (localStorage.getItem('notes') === null) {
+        notes = []
+    } else {
+        notes = JSON.parse(localStorage.getItem('notes'))
+    }
+
+    if (editNoteTitle.value === '' || editNoteBody.value === '') {
+        alert('Add a note')
+    } else {
+        const oldNote = document.querySelectorAll('div.note')[editNoteIndex.value]
+        const newNote = document.createElement('div')
+        newNote.className = 'note'
+        newNote.innerHTML = `
+            <div class="title">
+                <h3>${editNoteTitle.value}</h3>
+                <div class="task-controls">
+                    <button class="edit" title="Edit note"><i class="fas fa-edit"></i></button>
+                    <button class="delete" title="Delete note"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </div>
+            <div class="text">
+                <p>${editNoteBody.value}</p>
+            </div>
+        `
+        notesTab.replaceChild(newNote, oldNote)
+
+        console.log(notes[editNoteIndex.value].title)
+        console.log(notes[editNoteIndex.value].body)
+        console.log(editNoteTitle.value)
+        console.log(editNoteBody.value)
+
+        notes[editNoteIndex.value].title = editNoteTitle.value
+        notes[editNoteIndex.value].body = editNoteBody.value
+        localStorage.setItem('notes', JSON.stringify(notes))
+
+        editNoteForm.classList.remove('active')
+        document.querySelector('.content').classList.remove('overlay')
+        editNoteTitle.value = ''
+        editNoteBody.value = ''
+    }
+}
+
+function removeNote(note) {
+    if (confirm('Are You Sure?')) {
+        note.parentElement.remove()
+        removeNoteFromLocalStorage(note)
+        inspectNotes()
     }
 }
 
 function removeNoteFromLocalStorage(noteItem) {
+    console.log(noteItem)
     let notes
     if (localStorage.getItem('notes') === null) {
         notes = []

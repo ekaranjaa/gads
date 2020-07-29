@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (projects.length > 0) {
             projectsTab.classList.remove('empty')
 
-            for (let i = 0; i < projects.length; i++) {
-                const project = projects[i];
-
+            projects.forEach(project => {
                 const card = `
                     <div class="project">
                         <div class="head">
@@ -39,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `
 
                 projectsTab.innerHTML += card
-            }
+            })
         } else {
             projectsTab.innerHTML = `
                 <div class="emptyContent">

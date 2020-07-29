@@ -1,9 +1,29 @@
-const todosForm = document.querySelector('#todosForm')
-const todosTab = document.querySelector('.todos')
-const todoInput = document.querySelector('.input.todo')
+// New todo form
+const addTodoForm = document.querySelector('#addTodos')
+const newTodoInput = document.querySelector('#addTodos .input.todo')
 
-todosForm.onsubmit = addTodo
-todosTab.onclick = removeTodo
+// Edit todo form
+const editTodoForm = document.querySelector('#editTodos')
+const editTodoIndex = document.querySelector('#editTodos .todo-index')
+const editTodoInput = document.querySelector('#editTodos .input.todo')
+
+// Todos tab
+const todosTab = document.querySelector('.todos')
+
+addTodoForm.onsubmit = addTodo
+editTodoForm.onsubmit = updateTodo
+todosTab.onclick = (e) => {
+    e.preventDefault()
+
+    if (e.target.parentElement.classList.contains('edit')) {
+        editTodo(e.target.parentElement.parentElement.parentElement)
+    }
+
+    if (e.target.parentElement.classList.contains('delete')) {
+        removeTodo(e.target.parentElement.parentElement.parentElement)
+    }
+}
+
 
 function inspectTodos() {
     let todos
@@ -56,12 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function addTodo(e) {
     e.preventDefault()
 
-    if (todoInput.value === '') {
+    if (newTodoInput.value === '') {
         alert('Add a todo')
     } else {
         const todoContainer = `
             <div class="todo">
-                <span>${todoInput.value}</span>
+                <span>${newTodoInput.value}</span>
                 <div class="task-controls">
                     <button class="edit" title="Edit todo"><i class="fas fa-edit"></i></button>
                     <button class="delete" title="Delete todo"><i class="fas fa-trash-alt"></i></button>
@@ -70,10 +90,67 @@ function addTodo(e) {
         `
 
         todosTab.innerHTML += todoContainer
-        storeTodoInLocalStorage(todoInput.value)
-        todosForm.classList.toggle('active')
+        storeTodoInLocalStorage(newTodoInput.value)
+        addTodoForm.classList.remove('active')
+        document.querySelector('.content').classList.remove('overlay')
+        newTodoInput.value = ''
+        inspectTodos()
+    }
+}
+
+function editTodo(todo) {
+    let todos
+    if (localStorage.getItem('todos') === null) {
+        todos = []
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'))
+    }
+
+    editTodoForm.classList.toggle('active')
+    document.querySelector('.content').classList.toggle('overlay')
+    editTodoIndex.value = todos.indexOf(todo.innerText.trim())
+    editTodoInput.value = todo.innerText.trim()
+}
+
+function updateTodo(e) {
+    e.preventDefault()
+
+    let todos
+    if (localStorage.getItem('todos') === null) {
+        todos = []
+    } else {
+        todos = JSON.parse(localStorage.getItem('todos'))
+    }
+
+    if (editTodoInput.value === '') {
+        alert('The field can\'t be empty')
+    } else {
+        const oldTodo = document.querySelectorAll('div.todo')[editTodoIndex.value]
+        const newTodo = document.createElement('div')
+        newTodo.className = 'todo'
+        newTodo.innerHTML = `
+            <span>${editTodoInput.value}</span>
+            <div class="task-controls">
+                <button class="edit" title="Edit todo"><i class="fas fa-edit"></i></button>
+                <button class="delete" title="Delete todo"><i class="fas fa-trash-alt"></i></button>
+            </div>
+        `
+        todosTab.replaceChild(newTodo, oldTodo)
+
+        todos[editTodoIndex.value] = editTodoInput.value
+        localStorage.setItem('todos', JSON.stringify(todos))
+
+        editTodoForm.classList.remove('active')
         document.querySelector('.content').classList.toggle('overlay')
-        todoInput.value = ''
+        editTodoIndex.value = ''
+        editTodoInput.value = ''
+    }
+}
+
+function removeTodo(todo) {
+    if (confirm('Are You Sure?')) {
+        todo.remove()
+        removeTodoFromLocalStorage(todo)
         inspectTodos()
     }
 }
@@ -89,17 +166,6 @@ function storeTodoInLocalStorage(todo) {
     todos.push(todo)
 
     localStorage.setItem('todos', JSON.stringify(todos))
-}
-
-function removeTodo(e) {
-    if (e.target.parentElement.classList.contains('delete')) {
-
-        if (confirm('Are You Sure?')) {
-            e.target.parentElement.parentElement.parentElement.remove()
-            removeTodoFromLocalStorage(e.target.parentElement.parentElement.parentElement)
-            inspectTodos()
-        }
-    }
 }
 
 function removeTodoFromLocalStorage(todoItem) {
