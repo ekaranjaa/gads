@@ -4,6 +4,12 @@ const projects = [
         'cover_image': 'passgen.png',
         'source': 'https://github.com/ekaranjaa/password-generator',
         'live': 'https://passgenn.netlify.app'
+    },
+    {
+        'name': '"Abacus" game',
+        'cover_image': 'abacus.png',
+        'source': 'https://github.com/ekaranjaa/abacus-game',
+        'live': 'https://intgame.netlify.app'
     }
 ]
 
