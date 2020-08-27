@@ -1,27 +1,33 @@
 const projects = [
-    {
-        'name': 'Password generator',
-        'cover_image': 'passgen.png',
-        'source': 'https://github.com/ekaranjaa/password-generator',
-        'live': 'https://passgenn.netlify.app'
-    },
-    {
-        'name': '"Abacus" game',
-        'cover_image': 'abacus.png',
-        'source': 'https://github.com/ekaranjaa/abacus-game',
-        'live': 'https://intgame.netlify.app'
-    }
+  {
+    name: 'Password generator',
+    cover_image: 'passgen.png',
+    source: 'https://github.com/ekaranjaa/password-generator',
+    live: 'https://passgenn.netlify.app',
+  },
+  {
+    name: '"Abacus" game',
+    cover_image: 'abacus.png',
+    source: 'https://github.com/ekaranjaa/abacus-game',
+    live: 'https://intgame.netlify.app',
+  },
+  {
+    name: 'Memory game',
+    cover_image: 'iqgame.png',
+    source: 'https://github.com/ekaranjaa/memory-game',
+    live: 'https://iqgame.netlify.app',
+  },
 ]
 
 const projectsTab = document.querySelector('.projects')
 
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        if (projects.length > 0) {
-            projectsTab.classList.remove('empty')
+  setTimeout(() => {
+    if (projects.length > 0) {
+      projectsTab.classList.remove('empty')
 
-            projects.forEach(project => {
-                const card = `
+      projects.forEach(project => {
+        const card = `
                     <div class="project">
                         <div class="head">
                             <img src="./images/${project.cover_image}" alt="${project.name}">
@@ -42,15 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                 `
 
-                projectsTab.innerHTML += card
-            })
-        } else {
-            projectsTab.innerHTML = `
+        projectsTab.innerHTML += card
+      })
+    } else {
+      projectsTab.innerHTML = `
                 <div class="emptyContent">
                     <i class="fas fa-project-diagram"></i>
                     <p>You have no projects yet</p>
                 </div>
             `
-        }
-    }, 3000)
+    }
+  }, 3000)
 })

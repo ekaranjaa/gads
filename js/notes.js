@@ -14,50 +14,50 @@ const notesTab = document.querySelector('.notes')
 
 addNotesForm.onsubmit = addNote
 editNoteForm.onsubmit = updateNote
-notesTab.onclick = (e) => {
-    if (e.target.parentElement.classList.contains('edit')) {
-        editNote(e.target.parentElement.parentElement.parentElement)
-    }
+notesTab.onclick = e => {
+  if (e.target.parentElement.classList.contains('edit')) {
+    editNote(e.target.parentElement.parentElement.parentElement)
+  }
 
-    if (e.target.parentElement.classList.contains('delete')) {
-        removeNote(e.target.parentElement.parentElement.parentElement)
-    }
+  if (e.target.parentElement.classList.contains('delete')) {
+    removeNote(e.target.parentElement.parentElement.parentElement)
+  }
 }
 
 function inspectNotes() {
-    let notes
-    if (localStorage.getItem('notes') === null) {
-        notes = []
-    } else {
-        notes = JSON.parse(localStorage.getItem('notes'))
-    }
+  let notes
+  if (localStorage.getItem('notes') === null) {
+    notes = []
+  } else {
+    notes = JSON.parse(localStorage.getItem('notes'))
+  }
 
-    if (notes.length > 0) {
-        notesTab.classList.remove('empty')
-    } else {
-        notesTab.classList.add('empty')
-        notesTab.innerHTML = `
+  if (notes.length > 0) {
+    notesTab.classList.remove('empty')
+  } else {
+    notesTab.classList.add('empty')
+    notesTab.innerHTML = `
             <div class="emptyContent">
                 <i class="fas fa-sticky-note"></i>
                 <p>You have no notes yet</p>
             </div>
         `
-    }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        let notes
-        if (localStorage.getItem('notes') === null) {
-            notes = []
-        } else {
-            notes = JSON.parse(localStorage.getItem('notes'))
-        }
+  setTimeout(() => {
+    let notes
+    if (localStorage.getItem('notes') === null) {
+      notes = []
+    } else {
+      notes = JSON.parse(localStorage.getItem('notes'))
+    }
 
-        inspectNotes()
+    inspectNotes()
 
-        notes.forEach(note => {
-            const noteContainer = `
+    notes.forEach(note => {
+      const noteContainer = `
                 <div class="note">
                     <div class="title">
                         <h3>${note.title}</h3>
@@ -72,18 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `
 
-            notesTab.innerHTML += noteContainer
-        })
-    }, 3000)
+      notesTab.innerHTML += noteContainer
+    })
+  }, 3000)
 })
 
 function addNote(e) {
-    e.preventDefault()
+  e.preventDefault()
 
-    if (newNoteTitle.value === '' || newNoteBody.value === '') {
-        alert('Add a note')
-    } else {
-        const noteContainer = `
+  if (newNoteTitle.value === '' || newNoteBody.value === '') {
+    alert('Add a note')
+  } else {
+    const noteContainer = `
             <div class="note">
                 <div class="title">
                     <h3>${newNoteTitle.value}</h3>
@@ -98,61 +98,64 @@ function addNote(e) {
             </div>
         `
 
-        notesTab.innerHTML += noteContainer
-        storeNoteInLocalStorage({ 'title': newNoteTitle.value, 'body': newNoteBody.value })
-        addNotesForm.classList.toggle('active')
-        document.querySelector('.content').classList.toggle('overlay')
-        newNoteTitle.value = ''
-        newNoteBody.value = ''
-        inspectNotes()
-    }
+    notesTab.innerHTML += noteContainer
+    storeNoteInLocalStorage({
+      title: newNoteTitle.value,
+      body: newNoteBody.value,
+    })
+    addNotesForm.classList.toggle('active')
+    document.querySelector('.content').classList.toggle('overlay')
+    newNoteTitle.value = ''
+    newNoteBody.value = ''
+    inspectNotes()
+  }
 }
 
 function storeNoteInLocalStorage(note) {
-    let notes
-    if (localStorage.getItem('notes') === null) {
-        notes = []
-    } else {
-        notes = JSON.parse(localStorage.getItem('notes'))
-    }
+  let notes
+  if (localStorage.getItem('notes') === null) {
+    notes = []
+  } else {
+    notes = JSON.parse(localStorage.getItem('notes'))
+  }
 
-    notes.push(note)
+  notes.push(note)
 
-    localStorage.setItem('notes', JSON.stringify(notes))
+  localStorage.setItem('notes', JSON.stringify(notes))
 }
 
 function editNote(note) {
-    let notes
-    if (localStorage.getItem('notes') === null) {
-        notes = []
-    } else {
-        notes = JSON.parse(localStorage.getItem('notes'))
-    }
+  let notes
+  if (localStorage.getItem('notes') === null) {
+    notes = []
+  } else {
+    notes = JSON.parse(localStorage.getItem('notes'))
+  }
 
-    editNoteForm.classList.toggle('active')
-    document.querySelector('.content').classList.toggle('overlay')
-    editNoteIndex.value = notes.findIndex(x => x.title === note.innerText.trim())
-    editNoteTitle.value = note.innerText.trim()
-    editNoteBody.value = note.nextElementSibling.innerText.trim()
+  editNoteForm.classList.toggle('active')
+  document.querySelector('.content').classList.toggle('overlay')
+  editNoteIndex.value = notes.findIndex(x => x.title === note.innerText.trim())
+  editNoteTitle.value = note.innerText.trim()
+  editNoteBody.value = note.nextElementSibling.innerText.trim()
 }
 
 function updateNote(e) {
-    e.preventDefault()
+  e.preventDefault()
 
-    let notes
-    if (localStorage.getItem('notes') === null) {
-        notes = []
-    } else {
-        notes = JSON.parse(localStorage.getItem('notes'))
-    }
+  let notes
+  if (localStorage.getItem('notes') === null) {
+    notes = []
+  } else {
+    notes = JSON.parse(localStorage.getItem('notes'))
+  }
 
-    if (editNoteTitle.value === '' || editNoteBody.value === '') {
-        alert('Add a note')
-    } else {
-        const oldNote = document.querySelectorAll('div.note')[editNoteIndex.value]
-        const newNote = document.createElement('div')
-        newNote.className = 'note'
-        newNote.innerHTML = `
+  if (editNoteTitle.value === '' || editNoteBody.value === '') {
+    alert('Add a note')
+  } else {
+    const oldNote = document.querySelectorAll('div.note')[editNoteIndex.value]
+    const newNote = document.createElement('div')
+    newNote.className = 'note'
+    newNote.innerHTML = `
             <div class="title">
                 <h3>${editNoteTitle.value}</h3>
                 <div class="task-controls">
@@ -164,46 +167,53 @@ function updateNote(e) {
                 <p>${editNoteBody.value}</p>
             </div>
         `
-        notesTab.replaceChild(newNote, oldNote)
+    notesTab.replaceChild(newNote, oldNote)
 
-        console.log(notes[editNoteIndex.value].title)
-        console.log(notes[editNoteIndex.value].body)
-        console.log(editNoteTitle.value)
-        console.log(editNoteBody.value)
+    notes[editNoteIndex.value].title = editNoteTitle.value
+    notes[editNoteIndex.value].body = editNoteBody.value
+    localStorage.setItem('notes', JSON.stringify(notes))
 
-        notes[editNoteIndex.value].title = editNoteTitle.value
-        notes[editNoteIndex.value].body = editNoteBody.value
-        localStorage.setItem('notes', JSON.stringify(notes))
-
-        editNoteForm.classList.remove('active')
-        document.querySelector('.content').classList.remove('overlay')
-        editNoteTitle.value = ''
-        editNoteBody.value = ''
-    }
+    editNoteForm.classList.remove('active')
+    document.querySelector('.content').classList.remove('overlay')
+    editNoteTitle.value = ''
+    editNoteBody.value = ''
+  }
 }
 
 function removeNote(note) {
-    if (confirm('Are You Sure?')) {
-        note.parentElement.remove()
-        removeNoteFromLocalStorage(note)
-        inspectNotes()
-    }
+  if (confirm('Are You Sure?')) {
+    note.parentElement.remove()
+    removeNoteFromLocalStorage(note)
+    inspectNotes()
+  }
 }
 
 function removeNoteFromLocalStorage(noteItem) {
-    console.log(noteItem)
-    let notes
-    if (localStorage.getItem('notes') === null) {
-        notes = []
-    } else {
-        notes = JSON.parse(localStorage.getItem('notes'))
+  let notes
+  if (localStorage.getItem('notes') === null) {
+    notes = []
+  } else {
+    notes = JSON.parse(localStorage.getItem('notes'))
+  }
+
+  notes.forEach((note, index) => {
+    if (noteItem.textContent.trim() === note.title) {
+      notes.splice(index, 1)
+    }
+  })
+
+  localStorage.setItem('notes', JSON.stringify(notes))
+}
+
+setTimeout(() => {
+  if (notes.length === 0) {
+    let defaultNote = {
+      title: 'GADS 2020',
+      body: `This is a project that Emmanuel created as part of the Googel Africa Developer
+        Scholarship(GADS) program. All the projects displayed here were created as part of
+        GADS tasks/challenges from the awesome GADS mentors.`,
     }
 
-    notes.forEach((note, index) => {
-        if (noteItem.textContent.trim() === note.title) {
-            notes.splice(index, 1)
-        }
-    })
-
-    localStorage.setItem('notes', JSON.stringify(notes))
-}
+    storeNoteInLocalStorage(defaultNote)
+  }
+}, 3000)
